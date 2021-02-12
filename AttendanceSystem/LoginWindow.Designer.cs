@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginWindow));
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.userTextBox = new MetroFramework.Controls.MetroTextBox();
             this.passwordTextBox = new MetroFramework.Controls.MetroTextBox();
@@ -39,11 +40,14 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(70, 30);
+            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
+            this.pictureBox.Location = new System.Drawing.Point(44, 3);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(231, 170);
+            this.pictureBox.Size = new System.Drawing.Size(292, 211);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
             // 
             // userTextBox
             // 
@@ -64,7 +68,7 @@
             // 
             this.userLabel.AutoSize = true;
             this.userLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.userLabel.Location = new System.Drawing.Point(70, 226);
+            this.userLabel.Location = new System.Drawing.Point(70, 217);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(52, 25);
             this.userLabel.TabIndex = 3;
@@ -74,7 +78,7 @@
             // 
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.passwordLabel.Location = new System.Drawing.Point(70, 302);
+            this.passwordLabel.Location = new System.Drawing.Point(70, 292);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(89, 25);
             this.passwordLabel.TabIndex = 4;
@@ -86,7 +90,7 @@
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(115, 42);
             this.loginButton.TabIndex = 5;
-            this.loginButton.Text = "Log In";
+            this.loginButton.Text = "Login";
             // 
             // LoginWindow
             // 
