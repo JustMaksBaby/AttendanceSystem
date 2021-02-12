@@ -68,6 +68,8 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="PasswordGeneration\IPasswordInfo.cs" />
+    <Compile Include="PasswordGeneration\PasswordGen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LoginWindow.resx">
