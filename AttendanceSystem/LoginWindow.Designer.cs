@@ -35,6 +35,7 @@
             this.userLabel = new MetroFramework.Controls.MetroLabel();
             this.passwordLabel = new MetroFramework.Controls.MetroLabel();
             this.loginButton = new MetroFramework.Controls.MetroButton();
+            this.addUserLabel = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,6 +91,18 @@
             this.loginButton.Size = new System.Drawing.Size(115, 42);
             this.loginButton.TabIndex = 5;
             this.loginButton.Text = "Login";
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            // 
+            // addUserLabel
+            // 
+            this.addUserLabel.AutoSize = true;
+            this.addUserLabel.Location = new System.Drawing.Point(67, 410);
+            this.addUserLabel.Name = "addUserLabel";
+            this.addUserLabel.Size = new System.Drawing.Size(94, 17);
+            this.addUserLabel.TabIndex = 6;
+            this.addUserLabel.TabStop = true;
+            this.addUserLabel.Text = "Add new user";
+            this.addUserLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.addUserLabel_LinkClicked);
             // 
             // LoginWindow
             // 
@@ -97,6 +110,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(385, 491);
+            this.Controls.Add(this.addUserLabel);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.userLabel);
@@ -104,6 +118,7 @@
             this.Controls.Add(this.userTextBox);
             this.Controls.Add(this.pictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "LoginWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Log in ";
@@ -121,5 +136,6 @@
         private MetroFramework.Controls.MetroLabel userLabel;
         private MetroFramework.Controls.MetroLabel passwordLabel;
         private MetroFramework.Controls.MetroButton loginButton;
+        private System.Windows.Forms.LinkLabel addUserLabel;
     }
 }

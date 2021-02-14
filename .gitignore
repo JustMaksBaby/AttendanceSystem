@@ -5,6 +5,8 @@
 
 
 packages/
+Database/
+
 
 # User-specific files
 *.rsuser
