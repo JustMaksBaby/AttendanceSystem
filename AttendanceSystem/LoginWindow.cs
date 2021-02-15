@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AttendanceSystem.DataAccess;
 using AttendanceSystem.PasswordProcessing;
 
 namespace AttendanceSystem
@@ -20,9 +21,7 @@ namespace AttendanceSystem
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            User user = new User();
-            user.OriginalPassword = passwordTextBox.Text;
-            Password.CreateHashedPassword(user);
+           
         }
 
         private void addUserLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

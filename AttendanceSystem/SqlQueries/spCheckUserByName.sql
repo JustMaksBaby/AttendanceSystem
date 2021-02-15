@@ -7,7 +7,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 	
-	Select COUNT(Name) FROM Users
+	Select COUNT(Name) FROM UsersPasswords
 	WHERE Name = @Name; 
 END
 GO

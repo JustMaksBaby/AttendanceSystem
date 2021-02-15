@@ -31,7 +31,7 @@
             this.passwordLabel = new MetroFramework.Controls.MetroLabel();
             this.userNameLabel = new MetroFramework.Controls.MetroLabel();
             this.passwordTextBox = new MetroFramework.Controls.MetroTextBox();
-            this.userTextBox = new MetroFramework.Controls.MetroTextBox();
+            this.userNameTextBox = new MetroFramework.Controls.MetroTextBox();
             this.addButton = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
@@ -63,13 +63,13 @@
             this.passwordTextBox.Size = new System.Drawing.Size(231, 23);
             this.passwordTextBox.TabIndex = 6;
             // 
-            // userTextBox
+            // userNameTextBox
             // 
-            this.userTextBox.Location = new System.Drawing.Point(140, 15);
-            this.userTextBox.Name = "userTextBox";
-            this.userTextBox.Size = new System.Drawing.Size(231, 23);
-            this.userTextBox.TabIndex = 5;
-            this.userTextBox.Click += new System.EventHandler(this.userTextBox_Click);
+            this.userNameTextBox.Location = new System.Drawing.Point(140, 15);
+            this.userNameTextBox.Name = "userNameTextBox";
+            this.userNameTextBox.Size = new System.Drawing.Size(231, 23);
+            this.userNameTextBox.TabIndex = 5;
+            this.userNameTextBox.Click += new System.EventHandler(this.userTextBox_Click);
             // 
             // addButton
             // 
@@ -78,6 +78,7 @@
             this.addButton.Size = new System.Drawing.Size(115, 42);
             this.addButton.TabIndex = 9;
             this.addButton.Text = "Add";
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // AddUserWindow
             // 
@@ -89,7 +90,7 @@
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.userNameLabel);
             this.Controls.Add(this.passwordTextBox);
-            this.Controls.Add(this.userTextBox);
+            this.Controls.Add(this.userNameTextBox);
             this.MaximizeBox = false;
             this.Name = "AddUserWindow";
             this.Text = "AddUserWindow";
@@ -103,7 +104,7 @@
         private MetroFramework.Controls.MetroLabel passwordLabel;
         private MetroFramework.Controls.MetroLabel userNameLabel;
         private MetroFramework.Controls.MetroTextBox passwordTextBox;
-        private MetroFramework.Controls.MetroTextBox userTextBox;
+        private MetroFramework.Controls.MetroTextBox userNameTextBox;
         private MetroFramework.Controls.MetroButton addButton;
     }
 }

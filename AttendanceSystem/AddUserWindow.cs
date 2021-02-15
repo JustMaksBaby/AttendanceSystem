@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AttendanceSystem.DataAccess;
+using AttendanceSystem.PasswordProcessing;
 
 namespace AttendanceSystem
 {
@@ -20,6 +22,26 @@ namespace AttendanceSystem
         private void userTextBox_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            User user = new User();
+            user.Name = userNameTextBox.Text;
+            user.OriginalPassword = passwordTextBox.Text;
+            
+            if(SqlCon.UserExists(user))
+            {
+                MessageBox.Show("User with this name already exists", "Info");
+                SqlCon.GetUser(user); 
+
+            }
+            else
+            {
+                Password.CreateHashedPassword(user);
+                SqlCon.AddUser(user); 
+            }
+            
         }
     }
 }

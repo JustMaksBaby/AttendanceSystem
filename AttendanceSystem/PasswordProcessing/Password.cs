@@ -19,11 +19,11 @@ namespace AttendanceSystem.PasswordProcessing
             passwordInfo.Salt = _CreateRandomSaltUInt();
             passwordInfo.HashedPassword = _ComputeSaltedHash(passwordInfo.OriginalPassword, passwordInfo.Salt);
         }
-        public static bool AreEquil(string hashedPassword, string salt, string unhashedPassoword)
+        public static bool AreEquil(IPasswordInfo userFromDb, string enteredPassword)
         {
-            string tempHash = _ComputeSaltedHash(unhashedPassoword, salt);
+            string tempHash = _ComputeSaltedHash(enteredPassword, userFromDb.Salt);
 
-            return hashedPassword == tempHash;
+            return userFromDb.HashedPassword == tempHash;
         } 
 
         /// <summary>
