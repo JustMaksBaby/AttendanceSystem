@@ -30,16 +30,16 @@ namespace AttendanceSystem
             user.Name = userNameTextBox.Text;
             user.OriginalPassword = passwordTextBox.Text;
             
-            if(SqlCon.UserExists(user))
+            if(SqlConnector.UserExists(user))
             {
                 MessageBox.Show("User with this name already exists", "Info");
-                SqlCon.GetUser(user); 
+                SqlConnector.GetUser(user); 
 
             }
             else
             {
                 Password.CreateHashedPassword(user);
-                SqlCon.AddUser(user); 
+                SqlConnector.AddUser(user); 
             }
             
         }

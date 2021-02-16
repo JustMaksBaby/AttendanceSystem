@@ -10,7 +10,7 @@ using System.Data;
 
 namespace AttendanceSystem.DataAccess
 {
-    public class SqlCon
+    public class SqlConnector
     {
         private static readonly string _db = "AttandanceDb"; //database  connect to
         private static readonly string _dbConnectionStr = ConfigurationManager.ConnectionStrings[_db].ConnectionString;
@@ -62,7 +62,9 @@ namespace AttendanceSystem.DataAccess
                     DynamicParameters p = new DynamicParameters();
                     p.Add("@Name", user.Name);
 
-                    user = connection.Query<User>("dbo.spGetUserByName", p, commandType: CommandType.StoredProcedure).First();
+                    User returnedUser = connection.Query<User>("dbo.spGetUserByName", p, commandType: CommandType.StoredProcedure).First();
+                    user.HashedPassword = returnedUser.HashedPassword;
+                    user.Salt = returnedUser.Salt; 
                 }
 
                 return true;
