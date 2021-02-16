@@ -91,9 +91,13 @@
             this.Controls.Add(this.userNameLabel);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.userNameTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddUserWindow";
-            this.Text = "AddUserWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Add user";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddUserWindow_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

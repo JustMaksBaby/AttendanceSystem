@@ -14,6 +14,10 @@ namespace AttendanceSystem.PasswordProcessing
     /// </summary>
     public static class Password
     {
+        /// <summary>
+        /// Fills in Salt and Hashedpassword properties in user model
+        /// </summary>
+        /// <param name="passwordInfo"></param>
         public static void CreateHashedPassword(IPasswordInfo passwordInfo)
         {
             passwordInfo.Salt = _CreateRandomSaltUInt();

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AttendanceSystem.DataAccess;
@@ -23,11 +24,19 @@ namespace AttendanceSystem
         {
            
         }
-
         private void addUserLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddUserWindow addUserWindow = new AddUserWindow();
-            addUserWindow.Show(); 
+            AddUserWindow addUserWindow = new AddUserWindow(this);
+
+            addUserLabel.Enabled = false; 
+
+            addUserWindow.Show();
+        }
+
+        //
+        public void EnableAddUserLabel()
+        {
+            addUserLabel.Enabled = true;
         }
     }
 }

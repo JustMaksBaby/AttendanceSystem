@@ -14,34 +14,58 @@ namespace AttendanceSystem
 {
     public partial class AddUserWindow : Form
     {
-        public AddUserWindow()
+        private LoginWindow _parentWindow; 
+        public AddUserWindow(LoginWindow parentWindow)
         {
             InitializeComponent();
+            _parentWindow = parentWindow;
         }
 
+        //
         private void userTextBox_Click(object sender, EventArgs e)
         {
 
         }
-
         private void addButton_Click(object sender, EventArgs e)
         {
-            User user = new User();
-            user.Name = userNameTextBox.Text;
-            user.OriginalPassword = passwordTextBox.Text;
-            
-            if(SqlConnector.UserExists(user))
+            if (!_ValidateFields())
             {
-                MessageBox.Show("User with this name already exists", "Info");
-                SqlConnector.GetUser(user); 
-
+                MessageBox.Show("Password or user name is empty or not long enough.", "Info");
             }
             else
             {
+                User user = new User();
+                user.Name = userNameTextBox.Text;
+                user.OriginalPassword = passwordTextBox.Text;
                 Password.CreateHashedPassword(user);
-                SqlConnector.AddUser(user); 
-            }
-            
+
+                if (!SqlConnector.AddUser(user))
+                {
+                    MessageBox.Show("User with this name already exists", "Info");                     
+                }
+
+                userNameTextBox.Text = "";
+                passwordTextBox.Text = "";
+            } 
+        }
+        private void AddUserWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _parentWindow.EnableAddUserLabel();
+        }
+        //
+        private bool _ValidateFields()
+        {
+            return _IsPasswordLongEnough() && _IsNameValid();
+        }
+        private bool _IsPasswordLongEnough()
+        {
+            if (passwordTextBox.Text.Trim().Length < 8) return false;
+            else return true; 
+        } 
+        private bool _IsNameValid()
+        {
+            if (userNameTextBox.Text.Trim().Length < 4) return false;
+            else return true;
         }
     }
 }

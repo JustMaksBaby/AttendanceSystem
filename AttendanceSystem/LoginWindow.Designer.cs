@@ -41,75 +41,51 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
-            this.pictureBox.Location = new System.Drawing.Point(44, 3);
+            resources.ApplyResources(this.pictureBox, "pictureBox");
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(292, 211);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
             // userTextBox
             // 
-            this.userTextBox.Location = new System.Drawing.Point(70, 254);
+            resources.ApplyResources(this.userTextBox, "userTextBox");
             this.userTextBox.Name = "userTextBox";
-            this.userTextBox.Size = new System.Drawing.Size(231, 23);
-            this.userTextBox.TabIndex = 1;
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Location = new System.Drawing.Point(70, 330);
+            resources.ApplyResources(this.passwordTextBox, "passwordTextBox");
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
-            this.passwordTextBox.Size = new System.Drawing.Size(231, 23);
-            this.passwordTextBox.TabIndex = 2;
             // 
             // userLabel
             // 
-            this.userLabel.AutoSize = true;
+            resources.ApplyResources(this.userLabel, "userLabel");
             this.userLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.userLabel.Location = new System.Drawing.Point(70, 217);
             this.userLabel.Name = "userLabel";
-            this.userLabel.Size = new System.Drawing.Size(52, 25);
-            this.userLabel.TabIndex = 3;
-            this.userLabel.Text = "User:";
             // 
             // passwordLabel
             // 
-            this.passwordLabel.AutoSize = true;
+            resources.ApplyResources(this.passwordLabel, "passwordLabel");
             this.passwordLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.passwordLabel.Location = new System.Drawing.Point(70, 292);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(89, 25);
-            this.passwordLabel.TabIndex = 4;
-            this.passwordLabel.Text = "Password:";
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(186, 385);
+            resources.ApplyResources(this.loginButton, "loginButton");
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(115, 42);
-            this.loginButton.TabIndex = 5;
-            this.loginButton.Text = "Login";
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // addUserLabel
             // 
-            this.addUserLabel.AutoSize = true;
-            this.addUserLabel.Location = new System.Drawing.Point(67, 410);
+            resources.ApplyResources(this.addUserLabel, "addUserLabel");
             this.addUserLabel.Name = "addUserLabel";
-            this.addUserLabel.Size = new System.Drawing.Size(94, 17);
-            this.addUserLabel.TabIndex = 6;
             this.addUserLabel.TabStop = true;
-            this.addUserLabel.Text = "Add new user";
             this.addUserLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.addUserLabel_LinkClicked);
             // 
             // LoginWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(385, 491);
             this.Controls.Add(this.addUserLabel);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordLabel);
@@ -120,8 +96,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "LoginWindow";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Log in ";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

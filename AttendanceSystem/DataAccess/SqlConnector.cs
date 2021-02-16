@@ -34,7 +34,6 @@ namespace AttendanceSystem.DataAccess
         {
             if (!UserExists(user)) // if user name is  available
             {
-
                 using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
                 {
                     DynamicParameters p = new DynamicParameters();
