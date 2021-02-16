@@ -1,19 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
+using Dapper;
+using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Dapper;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Data;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
+using AttendanceLibrary.Models;
+using System.Collections.Generic;
 
-namespace AttendanceSystem.DataAccess
+namespace AttendanceLibrary.DataAccess
 {
     public class SqlConnector
     {
         private static readonly string _db = "AttandanceDb"; //database  connect to
         private static readonly string _dbConnectionStr = ConfigurationManager.ConnectionStrings[_db].ConnectionString;
+
 
         /// <summary>
         /// Checks if the user with certain name already exists in the DB
@@ -48,7 +50,6 @@ namespace AttendanceSystem.DataAccess
             else return false;
 
         }
-
         /// <summary>
         /// Gets a user by name
         /// </summary>

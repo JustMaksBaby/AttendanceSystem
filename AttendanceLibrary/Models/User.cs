@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AttendanceSystem.PasswordProcessing;
+using System.Collections.Generic;
+using AttendanceLibrary.PasswordProcessing;
 
-namespace AttendanceSystem
+namespace AttendanceLibrary.Models
 {
     public class User : IPasswordInfo
     {

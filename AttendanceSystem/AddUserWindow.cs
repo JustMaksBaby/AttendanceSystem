@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
+using System.Data;
 using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
-using AttendanceSystem.DataAccess;
-using AttendanceSystem.PasswordProcessing;
+using System.ComponentModel;
+using System.Threading.Tasks;
+using AttendanceLibrary.Models;
+using System.Collections.Generic;
+using AttendanceLibrary.DataAccess;
+using AttendanceLibrary.PasswordProcessing;
 
 namespace AttendanceSystem
 {

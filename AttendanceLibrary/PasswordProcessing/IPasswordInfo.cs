@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AttendanceSystem.PasswordProcessing
+namespace AttendanceLibrary.PasswordProcessing
 {
     public interface IPasswordInfo
     {
