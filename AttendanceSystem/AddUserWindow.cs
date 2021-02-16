@@ -14,11 +14,10 @@ namespace AttendanceSystem
 {
     public partial class AddUserWindow : Form
     {
-        private LoginWindow _parentWindow; 
-        public AddUserWindow(LoginWindow parentWindow)
+  
+        public AddUserWindow()
         {
             InitializeComponent();
-            _parentWindow = parentWindow;
         }
 
         //
@@ -48,10 +47,7 @@ namespace AttendanceSystem
                 passwordTextBox.Text = "";
             } 
         }
-        private void AddUserWindow_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _parentWindow.EnableAddUserLabel();
-        }
+
         //
         private bool _ValidateFields()
         {

@@ -22,21 +22,11 @@ namespace AttendanceSystem
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-           
         }
         private void addUserLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddUserWindow addUserWindow = new AddUserWindow(this);
-
-            addUserLabel.Enabled = false; 
-
-            addUserWindow.Show();
-        }
-
-        //
-        public void EnableAddUserLabel()
-        {
-            addUserLabel.Enabled = true;
-        }
+            AddUserWindow addUserWindow = new AddUserWindow();
+            addUserWindow.ShowDialog(); 
+        }        
     }
 }

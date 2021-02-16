@@ -97,7 +97,6 @@
             this.Name = "AddUserWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add user";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddUserWindow_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
