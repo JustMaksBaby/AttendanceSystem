@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginWindow));
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.userTextBox = new MetroFramework.Controls.MetroTextBox();
+            this.userNameTextBox = new MetroFramework.Controls.MetroTextBox();
             this.passwordTextBox = new MetroFramework.Controls.MetroTextBox();
             this.userLabel = new MetroFramework.Controls.MetroLabel();
             this.passwordLabel = new MetroFramework.Controls.MetroLabel();
@@ -45,10 +45,10 @@
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.TabStop = false;
             // 
-            // userTextBox
+            // userNameTextBox
             // 
-            resources.ApplyResources(this.userTextBox, "userTextBox");
-            this.userTextBox.Name = "userTextBox";
+            resources.ApplyResources(this.userNameTextBox, "userNameTextBox");
+            this.userNameTextBox.Name = "userNameTextBox";
             // 
             // passwordTextBox
             // 
@@ -91,7 +91,7 @@
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.userLabel);
             this.Controls.Add(this.passwordTextBox);
-            this.Controls.Add(this.userTextBox);
+            this.Controls.Add(this.userNameTextBox);
             this.Controls.Add(this.pictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -105,7 +105,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox;
-        private MetroFramework.Controls.MetroTextBox userTextBox;
+        private MetroFramework.Controls.MetroTextBox userNameTextBox;
         private MetroFramework.Controls.MetroTextBox passwordTextBox;
         private MetroFramework.Controls.MetroLabel userLabel;
         private MetroFramework.Controls.MetroLabel passwordLabel;

@@ -69,7 +69,6 @@
             this.userNameTextBox.Name = "userNameTextBox";
             this.userNameTextBox.Size = new System.Drawing.Size(231, 23);
             this.userNameTextBox.TabIndex = 5;
-            this.userNameTextBox.Click += new System.EventHandler(this.userTextBox_Click);
             // 
             // addButton
             // 

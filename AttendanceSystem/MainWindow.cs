@@ -16,5 +16,11 @@ namespace AttendanceSystem
         {
             InitializeComponent();
         }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.ShowDialog();
+        }
     }
 }

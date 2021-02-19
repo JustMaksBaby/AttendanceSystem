@@ -5611,25 +5611,25 @@
   <data name="&gt;&gt;pictureBox.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="userTextBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="userNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>70, 254</value>
   </data>
-  <data name="userTextBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="userNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 23</value>
   </data>
-  <data name="userTextBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="userNameTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;userTextBox.Name" xml:space="preserve">
-    <value>userTextBox</value>
+  <data name="&gt;&gt;userNameTextBox.Name" xml:space="preserve">
+    <value>userNameTextBox</value>
   </data>
-  <data name="&gt;&gt;userTextBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;userNameTextBox.Type" xml:space="preserve">
     <value>MetroFramework.Controls.MetroTextBox, MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>
   </data>
-  <data name="&gt;&gt;userTextBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;userNameTextBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;userTextBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;userNameTextBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="passwordTextBox.Location" type="System.Drawing.Point, System.Drawing">

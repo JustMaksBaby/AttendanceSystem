@@ -15,54 +15,77 @@ namespace AttendanceSystem
 {
     public partial class AddUserWindow : Form
     {
-  
+        private string _fieldError = null; // tracks errors in name and password fields
+
         public AddUserWindow()
         {
             InitializeComponent();
         }
 
-        //
-        private void userTextBox_Click(object sender, EventArgs e)
-        {
-
-        }
+        //    
         private void addButton_Click(object sender, EventArgs e)
         {
-            if (!_ValidateFields())
+            User user = new User();
+            user.Name = userNameTextBox.Text.Trim();
+            user.OriginalPassword = passwordTextBox.Text.Trim();
+            
+            if(_ValidateUserData(user))
             {
-                MessageBox.Show("Password or user name is empty or not long enough.", "Info");
-            }
-            else
-            {
-                User user = new User();
-                user.Name = userNameTextBox.Text;
-                user.OriginalPassword = passwordTextBox.Text;
                 Password.CreateHashedPassword(user);
 
                 if (!SqlConnector.AddUser(user))
                 {
-                    MessageBox.Show("User with this name already exists", "Info");                     
+                    MessageBox.Show("User with this name already exists", "Info");
                 }
-
-                userNameTextBox.Text = "";
-                passwordTextBox.Text = "";
+                else
+                {
+                    userNameTextBox.Text = "";
+                    passwordTextBox.Text = "";
+                }
+            }
+            else
+            {
+                MessageBox.Show(_fieldError,"Info");
+                _fieldError = null;
             } 
         }
 
         //
-        private bool _ValidateFields()
+        private bool _ValidateUserData(User user)
         {
-            return _IsPasswordLongEnough() && _IsNameValid();
+            return _IsPasswordValid(user.OriginalPassword) && _IsNameValid(user.Name);
         }
-        private bool _IsPasswordLongEnough()
+        private bool _IsPasswordValid(string password)
         {
-            if (passwordTextBox.Text.Trim().Length < 8) return false;
-            else return true; 
+            
+            if (password.Length < 8 || password.Length > 15)
+            {
+                _fieldError = "Password has wrong length. It shoud be  8 <= password <= 15";
+                return false;
+            }
+            else if (password.Split(' ').Length > 1)
+            {
+                _fieldError = "Password is separated by spaces"; 
+                return false; 
+            } 
+            else return true;
         } 
-        private bool _IsNameValid()
+        private bool _IsNameValid(string name)
         {
-            if (userNameTextBox.Text.Trim().Length < 4) return false;
+      
+            if (name.Length < 4 || name.Length > 20)
+            {
+                _fieldError = "Name has wrong length.It shoud be 4 <= name <= 20";
+                return false;
+
+            }
+            else if (name.Split(' ').Length > 1)
+            {
+                _fieldError = "Name is separated by spaces"; 
+                return false;
+            } 
             else return true;
         }
+
     }
 }

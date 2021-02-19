@@ -20,12 +20,12 @@ namespace AttendanceLibrary.DataAccess
         /// <summary>
         /// Checks if the user with certain name already exists in the DB
         /// </summary> 
-        public static bool UserExists(User user)
+        public static bool UserExists(string userName)
         {
             using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
-                p.Add("@Name", user.Name);
+                p.Add("@Name", userName);
 
                 int usersInDb = connection.ExecuteScalar<int>("dbo.spCheckUserByName", p, commandType: CommandType.StoredProcedure);
 
@@ -34,7 +34,7 @@ namespace AttendanceLibrary.DataAccess
         }
         public static bool AddUser(User user)
         {
-            if (!UserExists(user)) // if user name is  available
+            if (!UserExists(user.Name)) // if user name is  available
             {
                 using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
                 {
@@ -53,23 +53,21 @@ namespace AttendanceLibrary.DataAccess
         /// <summary>
         /// Gets a user by name
         /// </summary>
-        public static bool GetUser(User user)
+        public static User GetUserByName(string userName)
         {
-            if (UserExists(user))
+            User output = null;
+            if (UserExists(userName))
             {
                 using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
                 {
                     DynamicParameters p = new DynamicParameters();
-                    p.Add("@Name", user.Name);
+                    p.Add("@Name",  userName);
 
-                    User returnedUser = connection.Query<User>("dbo.spGetUserByName", p, commandType: CommandType.StoredProcedure).First();
-                    user.HashedPassword = returnedUser.HashedPassword;
-                    user.Salt = returnedUser.Salt; 
+                    output = connection.Query<User>("dbo.spGetUserByName", p, commandType: CommandType.StoredProcedure).First();
                 }
-
-                return true;
             }
-            else return false;
+
+            return output;
         }
 
     }
