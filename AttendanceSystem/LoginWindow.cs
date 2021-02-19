@@ -70,7 +70,7 @@ namespace AttendanceSystem
             }
             else
             {
-                _fieldError = "the password is wrong";
+                _fieldError = "The password is wrong";
                 return false;
             }
 
