@@ -112,13 +112,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AttendanceLibrary\AttendanceLibrary.csproj">
+    <ProjectReference Include="..\AttendanceLibrary\AttendanceSystemLibrary.csproj">
       <Project>{1741268c-15e7-41e5-beef-81c636b5478d}</Project>
-      <Name>AttendanceLibrary</Name>
+      <Name>AttendanceSystemLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataValidation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

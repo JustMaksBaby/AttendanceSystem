@@ -35,7 +35,6 @@
             this.userLabel = new MetroFramework.Controls.MetroLabel();
             this.passwordLabel = new MetroFramework.Controls.MetroLabel();
             this.loginButton = new MetroFramework.Controls.MetroButton();
-            this.addUserLabel = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,19 +73,11 @@
             this.loginButton.Name = "loginButton";
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
-            // addUserLabel
-            // 
-            resources.ApplyResources(this.addUserLabel, "addUserLabel");
-            this.addUserLabel.Name = "addUserLabel";
-            this.addUserLabel.TabStop = true;
-            this.addUserLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.addUserLabel_LinkClicked);
-            // 
             // LoginWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Controls.Add(this.addUserLabel);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.userLabel);
@@ -110,6 +101,5 @@
         private MetroFramework.Controls.MetroLabel userLabel;
         private MetroFramework.Controls.MetroLabel passwordLabel;
         private MetroFramework.Controls.MetroButton loginButton;
-        private System.Windows.Forms.LinkLabel addUserLabel;
     }
 }

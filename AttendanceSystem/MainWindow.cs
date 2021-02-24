@@ -20,7 +20,24 @@ namespace AttendanceSystem
         private void MainWindow_Load(object sender, EventArgs e)
         {
             LoginWindow loginWindow = new LoginWindow();
-            loginWindow.ShowDialog();
+
+            if (loginWindow.ShowDialog() != DialogResult.OK)
+            {
+                System.Windows.Forms.Application.Exit();
+            };
+
+        }
+
+        private void addTeacherLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AddTeacherWindow addTeacherWindow = new AddTeacherWindow();
+            addTeacherWindow.ShowDialog();
+            addTeacherWindow.Dispose();
+        }
+
+        private void addStudentLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

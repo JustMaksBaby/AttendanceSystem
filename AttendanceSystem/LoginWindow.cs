@@ -31,6 +31,7 @@ namespace AttendanceSystem
 
             if(_ValidateUserData(testedUser))
             {
+                this.DialogResult = DialogResult.OK; 
                 this.Close();    
             }
             else
@@ -38,12 +39,6 @@ namespace AttendanceSystem
                 MessageBox.Show(_fieldError,"Info");
             }
 
-        }
-        private void addUserLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            AddUserWindow addUserWindow = new AddUserWindow();
-            addUserWindow.ShowDialog();
-            addUserWindow.Dispose(); 
         }
 
         //

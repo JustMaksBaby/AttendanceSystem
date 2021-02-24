@@ -13,11 +13,11 @@ using AttendanceLibrary.PasswordProcessing;
 
 namespace AttendanceSystem
 {
-    public partial class AddUserWindow : Form
+    public partial class AddTeacherWindow : Form
     {
         private string _fieldError = null; // tracks errors in name and password fields
 
-        public AddUserWindow()
+        public AddTeacherWindow()
         {
             InitializeComponent();
         }
@@ -26,8 +26,8 @@ namespace AttendanceSystem
         private void addButton_Click(object sender, EventArgs e)
         {
             User user = new User();
-            user.Name = userNameTextBox.Text.Trim();
-            user.OriginalPassword = passwordTextBox.Text.Trim();
+            user.Name = firstNameTextBox.Text.Trim();
+            user.OriginalPassword = lastNameTextBox.Text.Trim();
             
             if(_ValidateUserData(user))
             {
@@ -39,8 +39,8 @@ namespace AttendanceSystem
                 }
                 else
                 {
-                    userNameTextBox.Text = "";
-                    passwordTextBox.Text = "";
+                    firstNameTextBox.Text = "";
+                    lastNameTextBox.Text = "";
                 }
             }
             else
@@ -87,5 +87,6 @@ namespace AttendanceSystem
             else return true;
         }
 
+  
     }
 }

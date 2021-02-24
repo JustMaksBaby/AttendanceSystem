@@ -5609,7 +5609,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="userNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>70, 254</value>
@@ -5630,7 +5630,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;userNameTextBox.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="passwordTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>70, 330</value>
@@ -5651,7 +5651,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;passwordTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="userLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5678,7 +5678,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;userLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="passwordLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5705,10 +5705,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;passwordLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="loginButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 385</value>
+    <value>127, 389</value>
   </data>
   <data name="loginButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 42</value>
@@ -5729,33 +5729,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;loginButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="addUserLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="addUserLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 410</value>
-  </data>
-  <data name="addUserLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 17</value>
-  </data>
-  <data name="addUserLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="addUserLabel.Text" xml:space="preserve">
-    <value>Add new user</value>
-  </data>
-  <data name="&gt;&gt;addUserLabel.Name" xml:space="preserve">
-    <value>addUserLabel</value>
-  </data>
-  <data name="&gt;&gt;addUserLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;addUserLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;addUserLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
