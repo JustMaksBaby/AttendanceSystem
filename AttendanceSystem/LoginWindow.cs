@@ -16,37 +16,42 @@ namespace AttendanceSystem
 {
     public partial class LoginWindow : Form
     {
-        private string _fieldError = null; // tracks errors in name and password fields
+        private string _fieldError = null; // tracks errors in teacher information fields
+        private Teacher _teacher = null; 
         public LoginWindow()
         {
             InitializeComponent();
+            _teacher = new Teacher(); 
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-
-            User testedUser = new User();
+            LoggedUser testedUser = new LoggedUser();
             testedUser.OriginalPassword = passwordTextBox.Text.Trim();
-            testedUser.Name = userNameTextBox.Text.Trim(); 
+            testedUser.Login = userNameTextBox.Text.Trim(); 
 
-            if(_ValidateUserData(testedUser))
+            if(_ValidateLoginData(testedUser))
             {
+                _teacher = SqlConnector.GetTeacherByLogin(testedUser.Login);   
+
                 this.DialogResult = DialogResult.OK; 
+                
                 this.Close();    
             }
             else
             {
                 MessageBox.Show(_fieldError,"Info");
+                _fieldError = null;  
             }
 
         }
 
         //
-        private bool  _ValidateUserData(User testedUser)
+        private bool  _ValidateLoginData(ILoginInfo testedUser)
         {
-            if(_IsNameValid(testedUser))
+            if(_IsLoginValid(testedUser))
             {
-                User userFromDb = SqlConnector.GetUserByName(testedUser.Name); 
+                ILoginInfo userFromDb = SqlConnector.GetLoginInfo(testedUser.Login); 
 
                 if(_IsPasswordValid(userFromDb, testedUser))
                 {
@@ -57,7 +62,7 @@ namespace AttendanceSystem
             return false; 
             
         }
-        private bool _IsPasswordValid(User userFromDb, User testedUser  )
+        private bool _IsPasswordValid(ILoginInfo userFromDb, ILoginInfo testedUser  )
         {
             if (Password.AreEquil(userFromDb, testedUser))
             {
@@ -65,20 +70,20 @@ namespace AttendanceSystem
             }
             else
             {
-                _fieldError = "The password is wrong";
+                _fieldError = _fieldError??"The password is wrong";
                 return false;
             }
 
         }
-        private bool _IsNameValid(User testedUser)
+        private bool _IsLoginValid(ILoginInfo testedUser)
         {
-            if (SqlConnector.UserExists(testedUser.Name))
+            if (SqlConnector.UserExists(testedUser.Login))
             {
                 return true;
             }
             else
             {
-                _fieldError = "There is no user with this name";
+                _fieldError = _fieldError??"There is no user with this login";
                 return false; 
             }
         }
