@@ -1,17 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using AttendanceLibrary.PasswordProcessing;
 
 namespace AttendanceLibrary.Models
 {
-    public class User : IPasswordInfo
+    public class LoggedUser : ILoginInfo
     {
-        public string Name { get; set; }
+        public string Login { get; set; }
         public string OriginalPassword { get; set; }
-        public string HashedPassword { get; set; }
-        public string Salt { get; set; } 
+        public string CryptedPassword { get; set; }
+        public string Salt { get; set; }
     }
 }
