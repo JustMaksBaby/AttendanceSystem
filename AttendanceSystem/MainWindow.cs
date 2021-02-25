@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AttendanceLibrary.Models; 
 
 namespace AttendanceSystem
 {
@@ -19,12 +20,12 @@ namespace AttendanceSystem
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow();
+            //LoginWindow loginWindow = new LoginWindow();
 
-            if (loginWindow.ShowDialog() != DialogResult.OK)
-            {
-                System.Windows.Forms.Application.Exit();
-            };
+            //if (loginWindow.ShowDialog() != DialogResult.OK)
+            //{
+            //    System.Windows.Forms.Application.Exit();
+            //};
 
         }
 

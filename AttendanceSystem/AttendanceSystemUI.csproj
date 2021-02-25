@@ -56,11 +56,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddUserWindow.cs">
+    <Compile Include="AddGroupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddUserWindow.Designer.cs">
-      <DependentUpon>AddUserWindow.cs</DependentUpon>
+    <Compile Include="AddGroupWindow.Designer.cs">
+      <DependentUpon>AddGroupWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddStudentWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddStudentWindow.Designer.cs">
+      <DependentUpon>AddStudentWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddTeacherWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddTeacherWindow.Designer.cs">
+      <DependentUpon>AddTeacherWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginWindow.cs">
       <SubType>Form</SubType>
@@ -76,8 +88,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddUserWindow.resx">
-      <DependentUpon>AddUserWindow.cs</DependentUpon>
+    <EmbeddedResource Include="AddGroupWindow.resx">
+      <DependentUpon>AddGroupWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddStudentWindow.resx">
+      <DependentUpon>AddStudentWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddTeacherWindow.resx">
+      <DependentUpon>AddTeacherWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginWindow.asa-TZ.resx">
       <DependentUpon>LoginWindow.cs</DependentUpon>

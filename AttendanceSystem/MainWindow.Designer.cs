@@ -36,11 +36,11 @@
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.groupsComboBox = new System.Windows.Forms.ComboBox();
             this.lessonAttendanceTabPage = new MetroFramework.Controls.MetroTabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.lessonLabel = new System.Windows.Forms.Label();
             this.lessonsComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.addTeacherLinkLabel = new System.Windows.Forms.LinkLabel();
             this.addStudentLinkLabel = new System.Windows.Forms.LinkLabel();
             this.addGroupLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -143,36 +143,6 @@
             this.lessonAttendanceTabPage.Text = "Lesson Attendance";
             this.lessonAttendanceTabPage.VerticalScrollbarBarColor = true;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 68);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(930, 416);
-            this.dataGridView1.TabIndex = 6;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(0, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(139, 28);
-            this.comboBox1.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Font = new System.Drawing.Font("Microsoft JhengHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(-1, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 22);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Group:";
-            // 
             // lessonLabel
             // 
             this.lessonLabel.AutoSize = true;
@@ -193,10 +163,40 @@
             this.lessonsComboBox.Size = new System.Drawing.Size(139, 28);
             this.lessonsComboBox.TabIndex = 8;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Font = new System.Drawing.Font("Microsoft JhengHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(-1, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 22);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Group:";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 68);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(930, 416);
+            this.dataGridView1.TabIndex = 6;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(0, 34);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(139, 28);
+            this.comboBox1.TabIndex = 5;
+            // 
             // addTeacherLinkLabel
             // 
             this.addTeacherLinkLabel.AutoSize = true;
-            this.addTeacherLinkLabel.Location = new System.Drawing.Point(706, 23);
+            this.addTeacherLinkLabel.Location = new System.Drawing.Point(706, 40);
             this.addTeacherLinkLabel.Name = "addTeacherLinkLabel";
             this.addTeacherLinkLabel.Size = new System.Drawing.Size(85, 17);
             this.addTeacherLinkLabel.TabIndex = 1;
@@ -207,7 +207,7 @@
             // addStudentLinkLabel
             // 
             this.addStudentLinkLabel.AutoSize = true;
-            this.addStudentLinkLabel.Location = new System.Drawing.Point(877, 23);
+            this.addStudentLinkLabel.Location = new System.Drawing.Point(877, 40);
             this.addStudentLinkLabel.Name = "addStudentLinkLabel";
             this.addStudentLinkLabel.Size = new System.Drawing.Size(84, 17);
             this.addStudentLinkLabel.TabIndex = 2;
@@ -218,7 +218,7 @@
             // addGroupLinkLabel
             // 
             this.addGroupLinkLabel.AutoSize = true;
-            this.addGroupLinkLabel.Location = new System.Drawing.Point(797, 23);
+            this.addGroupLinkLabel.Location = new System.Drawing.Point(797, 40);
             this.addGroupLinkLabel.Name = "addGroupLinkLabel";
             this.addGroupLinkLabel.Size = new System.Drawing.Size(74, 17);
             this.addGroupLinkLabel.TabIndex = 3;
