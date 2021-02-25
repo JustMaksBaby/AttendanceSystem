@@ -9,24 +9,23 @@ namespace AttendanceLibrary.PasswordProcessing
 {
 
     /// <summary>
-    /// Creates  new hashed passwords
-    /// Comparares hashed and unhashed passwords
+    /// Contains methods to perform operation under passwords
     /// </summary>
     public static class Password
     {
         /// <summary>
         /// Fills in Salt and Hashedpassword properties in user model
         /// </summary>
-        public static void CreateHashedPassword(IPasswordInfo passwordInfo)
+        public static void CreateHashedPassword(ILoginInfo passwordInfo)
         {
             passwordInfo.Salt = _CreateRandomSaltUInt();
-            passwordInfo.HashedPassword = _ComputeSaltedHash(passwordInfo.OriginalPassword, passwordInfo.Salt);
+            passwordInfo.CryptedPassword = _ComputeSaltedHash(passwordInfo.OriginalPassword, passwordInfo.Salt);
         }
-        public static bool AreEquil(IPasswordInfo userFromDb, IPasswordInfo testedUser)
+        public static bool AreEquil(ILoginInfo userFromDb, ILoginInfo testedUser)
         {
             string tempHash = _ComputeSaltedHash(testedUser.OriginalPassword, userFromDb.Salt);
 
-            return userFromDb.HashedPassword == tempHash;
+            return userFromDb.CryptedPassword == tempHash;
         } 
 
         /// <summary>
