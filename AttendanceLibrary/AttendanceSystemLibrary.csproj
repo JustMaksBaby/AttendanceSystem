@@ -46,8 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\SqlConnector.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="PasswordProcessing\IPasswordInfo.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Lesson.cs" />
+    <Compile Include="Models\LoggedUser.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="PasswordProcessing\ILoginInfo.cs" />
     <Compile Include="PasswordProcessing\Password.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
