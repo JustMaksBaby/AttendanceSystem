@@ -39,6 +39,8 @@
             this.passwordTextBox = new MetroFramework.Controls.MetroTextBox();
             this.statusLabel = new MetroFramework.Controls.MetroLabel();
             this.statusesComboBox = new System.Windows.Forms.ComboBox();
+            this.loginLabel = new MetroFramework.Controls.MetroLabel();
+            this.loginTextBox = new MetroFramework.Controls.MetroTextBox();
             this.SuspendLayout();
             // 
             // lastNameLabel
@@ -65,7 +67,6 @@
             // 
             this.lastNameTextBox.Location = new System.Drawing.Point(140, 54);
             this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.PasswordChar = '*';
             this.lastNameTextBox.Size = new System.Drawing.Size(231, 23);
             this.lastNameTextBox.TabIndex = 6;
             // 
@@ -78,7 +79,7 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(140, 258);
+            this.addButton.Location = new System.Drawing.Point(140, 269);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(115, 42);
             this.addButton.TabIndex = 9;
@@ -89,7 +90,7 @@
             // 
             this.patronymicLabel.AutoSize = true;
             this.patronymicLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.patronymicLabel.Location = new System.Drawing.Point(13, 93);
+            this.patronymicLabel.Location = new System.Drawing.Point(12, 93);
             this.patronymicLabel.Name = "patronymicLabel";
             this.patronymicLabel.Size = new System.Drawing.Size(104, 25);
             this.patronymicLabel.TabIndex = 11;
@@ -99,7 +100,6 @@
             // 
             this.patronymicTextBox.Location = new System.Drawing.Point(140, 95);
             this.patronymicTextBox.Name = "patronymicTextBox";
-            this.patronymicTextBox.PasswordChar = '*';
             this.patronymicTextBox.Size = new System.Drawing.Size(231, 23);
             this.patronymicTextBox.TabIndex = 10;
             // 
@@ -107,7 +107,7 @@
             // 
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.passwordLabel.Location = new System.Drawing.Point(13, 141);
+            this.passwordLabel.Location = new System.Drawing.Point(12, 171);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(89, 25);
             this.passwordLabel.TabIndex = 13;
@@ -115,9 +115,8 @@
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Location = new System.Drawing.Point(140, 141);
+            this.passwordTextBox.Location = new System.Drawing.Point(140, 171);
             this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(231, 23);
             this.passwordTextBox.TabIndex = 12;
             // 
@@ -125,7 +124,7 @@
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.statusLabel.Location = new System.Drawing.Point(13, 194);
+            this.statusLabel.Location = new System.Drawing.Point(15, 208);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(63, 25);
             this.statusLabel.TabIndex = 15;
@@ -135,17 +134,36 @@
             // 
             this.statusesComboBox.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusesComboBox.FormattingEnabled = true;
-            this.statusesComboBox.Location = new System.Drawing.Point(140, 194);
+            this.statusesComboBox.Location = new System.Drawing.Point(140, 208);
             this.statusesComboBox.Name = "statusesComboBox";
             this.statusesComboBox.Size = new System.Drawing.Size(231, 28);
             this.statusesComboBox.TabIndex = 16;
+            // 
+            // loginLabel
+            // 
+            this.loginLabel.AutoSize = true;
+            this.loginLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.loginLabel.Location = new System.Drawing.Point(15, 131);
+            this.loginLabel.Name = "loginLabel";
+            this.loginLabel.Size = new System.Drawing.Size(61, 25);
+            this.loginLabel.TabIndex = 18;
+            this.loginLabel.Text = "Login:";
+            // 
+            // loginTextBox
+            // 
+            this.loginTextBox.Location = new System.Drawing.Point(140, 133);
+            this.loginTextBox.Name = "loginTextBox";
+            this.loginTextBox.Size = new System.Drawing.Size(231, 23);
+            this.loginTextBox.TabIndex = 17;
             // 
             // AddTeacherWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(411, 322);
+            this.ClientSize = new System.Drawing.Size(404, 357);
+            this.Controls.Add(this.loginLabel);
+            this.Controls.Add(this.loginTextBox);
             this.Controls.Add(this.statusesComboBox);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.passwordLabel);
@@ -181,5 +199,7 @@
         private MetroFramework.Controls.MetroTextBox passwordTextBox;
         private MetroFramework.Controls.MetroLabel statusLabel;
         private System.Windows.Forms.ComboBox statusesComboBox;
+        private MetroFramework.Controls.MetroLabel loginLabel;
+        private MetroFramework.Controls.MetroTextBox loginTextBox;
     }
 }

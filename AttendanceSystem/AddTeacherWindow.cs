@@ -20,28 +20,29 @@ namespace AttendanceSystem
         public AddTeacherWindow()
         {
             InitializeComponent();
+            statusesComboBox.Items.Add("admin");
+            statusesComboBox.Items.Add("limited"); 
         }
 
-        //    
+    //--    
         private void addButton_Click(object sender, EventArgs e)
         {
-            User user = new User();
-            user.Name = firstNameTextBox.Text.Trim();
-            user.OriginalPassword = lastNameTextBox.Text.Trim();
-            
-            if(_ValidateUserData(user))
-            {
-                Password.CreateHashedPassword(user);
+            Teacher teacher = new Teacher();
+            LoggedUser loginInfo = new LoggedUser();
 
-                if (!SqlConnector.AddUser(user))
-                {
-                    MessageBox.Show("User with this name already exists", "Info");
-                }
-                else
-                {
-                    firstNameTextBox.Text = "";
-                    lastNameTextBox.Text = "";
-                }
+            _CaptureLoginData(loginInfo);
+            _CaptureTeacherData(teacher); 
+
+            if(_ValidateLoginData(loginInfo)  && _ValidateTeacherData(teacher))
+            {
+                Password.CreateHashedPassword(loginInfo);
+                SqlConnector.AddUser(loginInfo, teacher);
+
+                firstNameTextBox.Text = "";
+                lastNameTextBox.Text = "";
+                patronymicTextBox.Text = "";
+                loginTextBox.Text = ""; 
+                passwordTextBox.Text = ""; 
             }
             else
             {
@@ -50,43 +51,86 @@ namespace AttendanceSystem
             } 
         }
 
-        //
-        private bool _ValidateUserData(User user)
+    //--
+        /// <summary>
+        /// Extracts data from fields with login information
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        private void _CaptureLoginData(LoggedUser loginInfo)
         {
-            return _IsPasswordValid(user.OriginalPassword) && _IsNameValid(user.Name);
+            loginInfo.Login = loginTextBox.Text.Trim();
+            loginInfo.OriginalPassword = passwordTextBox.Text.Trim();
+        }
+
+        /// <summary>
+        /// Extracts data from fields with teacher`s personal information
+        /// </summary>
+        /// <param name="teacher"></param>
+        private void _CaptureTeacherData(Teacher teacher)
+        {
+            teacher.FirstName = firstNameTextBox.Text.Trim();
+            teacher.LastName = lastNameTextBox.Text.Trim();
+            teacher.Patronymic = patronymicTextBox.Text.Trim();
+            teacher.SystemStatus = statusesComboBox.Text; 
+        }
+
+    //----
+        private bool _ValidateLoginData(LoggedUser loginInfo)
+        {
+            return _IsPasswordValid(loginInfo.OriginalPassword) && _IsLoginValid(loginInfo.Login);
         }
         private bool _IsPasswordValid(string password)
         {
             
             if (password.Length < 8 || password.Length > 15)
             {
-                _fieldError = "Password has wrong length. It shoud be  8 <= password <= 15";
+                _fieldError = _fieldError??"Password has wrong length. It shoud be  8 <= password <= 15";
                 return false;
             }
             else if (password.Split(' ').Length > 1)
             {
-                _fieldError = "Password is separated by spaces"; 
+                _fieldError = _fieldError??"Password is separated by spaces"; 
                 return false; 
             } 
             else return true;
         } 
-        private bool _IsNameValid(string name)
+        private bool _IsLoginValid(string login)
         {
       
-            if (name.Length < 4 || name.Length > 20)
+            if (login.Length < 4 || login.Length > 20)
             {
-                _fieldError = "Name has wrong length.It shoud be 4 <= name <= 20";
+                _fieldError = _fieldError??"Login has wrong length.It shoud be 4 <= name <= 20";
                 return false;
 
             }
-            else if (name.Split(' ').Length > 1)
+            else if (login.Split(' ').Length > 1)
             {
-                _fieldError = "Name is separated by spaces"; 
+                _fieldError = _fieldError??"Login is separated by spaces"; 
                 return false;
             } 
+            else if(SqlConnector.UserExists(login))
+            {
+                _fieldError = _fieldError ?? "User with this login already exists";
+                return false;
+            }
             else return true;
+        } 
+
+        private bool _ValidateTeacherData(Teacher teacher)
+        {
+            return _IsFullNameValid(teacher.FirstName, teacher.LastName, teacher.Patronymic);
+        }
+        private bool _IsFullNameValid(string firstName, string lastName, string patronymic )
+        {
+            if(SqlConnector.TeacherExists(firstName, lastName) && patronymic == "")
+            {
+                _fieldError = _fieldError??"Teacher with these first and last name already exists.Please set patronymic";
+                return false;
+            }
+
+            return true; 
         }
 
-  
+        
     }
 }
