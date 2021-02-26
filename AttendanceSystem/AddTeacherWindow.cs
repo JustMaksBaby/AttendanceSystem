@@ -17,11 +17,14 @@ namespace AttendanceSystem
     {
         private string _fieldError = null; // tracks errors in name and password fields
 
+
         public AddTeacherWindow()
         {
             InitializeComponent();
+
             statusesComboBox.Items.Add("admin");
-            statusesComboBox.Items.Add("limited"); 
+            statusesComboBox.Items.Add("limited");
+            statusesComboBox.SelectedItem = "admin"; 
         }
 
     //--    
@@ -131,6 +134,6 @@ namespace AttendanceSystem
             return true; 
         }
 
-        
+  
     }
 }
