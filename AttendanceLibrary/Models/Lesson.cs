@@ -8,6 +8,6 @@ namespace AttendanceLibrary.Models
 {
     public class Lesson
     {
-        string Name { get; set; }
+        public string Name { get; set; }
     }
 }

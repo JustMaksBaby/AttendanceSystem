@@ -8,7 +8,7 @@ namespace AttendanceLibrary.Models
 {
     public class Group
     {
-        string Name { get; set; }
-        Teacher Curator { get; set; }
+        public string Name { get; set; }
+        public string Curator { get; set; }
     }
 }
