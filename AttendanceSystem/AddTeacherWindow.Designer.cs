@@ -181,6 +181,7 @@
             this.Name = "AddTeacherWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add user";
+            this.Load += new System.EventHandler(this.AddTeacherWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -9,9 +9,18 @@ namespace AttendanceLibrary.Models
 {
     public class Teacher
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Patronymic { get; set; }
-        public string SystemStatus { get; set; } // admin or limited
+        public string SystemStatus { get; set; } // admin or limited 
+        public string FullName
+        {   get
+            {
+                return $"{FirstName} {LastName} {Patronymic}".TrimEnd(); // in case if  there is no patronymic value
+            }
+
+            
+        }
     }
 }

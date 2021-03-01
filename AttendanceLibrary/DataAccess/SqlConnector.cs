@@ -19,18 +19,50 @@ namespace AttendanceLibrary.DataAccess
 
         public static bool UserExists(string login)
         {
+            int usersInDb = 0; 
+
             using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@Login", login);
 
-                int usersInDb = connection.ExecuteScalar<int>("dbo.spCheckUserExist", p, commandType: CommandType.StoredProcedure);
+                usersInDb = connection.ExecuteScalar<int>("dbo.spCheckUserExist", p, commandType: CommandType.StoredProcedure);
 
-                return usersInDb > 0;
             }
+            
+            return usersInDb > 0;
         }
+        public static bool TeacherExists(string firstName, string lastName)
+        {
+            int teachersInDb = 0;  
+
+            using(SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            {
+                DynamicParameters p = new DynamicParameters();
+                p.Add("@FirstName", firstName);
+                p.Add("@LastName", lastName);
+
+                teachersInDb = connection.ExecuteScalar<int>("dbo.spCheckTeacherByFirstLastName", p, commandType:CommandType.StoredProcedure);
+            }
+            return teachersInDb > 0; 
+        }
+        public static bool GroupExists(string groupName)
+        {
+            int groupsInDb = 0; 
+            using(SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            {
+                DynamicParameters p = new DynamicParameters();
+                p.Add("@Name", groupName);
+
+                groupsInDb = connection.ExecuteScalar<int>("dbo.spCheckGroupExists", p, commandType: CommandType.StoredProcedure);
+            }
+
+            return groupsInDb > 0;
+        }
+    //
         public static void AddUser(ILoginInfo  loginInfo, Teacher teacher)
         {
+
             using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
@@ -43,11 +75,15 @@ namespace AttendanceLibrary.DataAccess
                 connection.Execute("dbo.spAddLoginInfo", p, commandType: CommandType.StoredProcedure);
             }
 
-        }
+        } 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="teacher"></param>
+        /// <returns>returns id for added row</returns>
         public static int AddTeacher(Teacher teacher)
         {
-            //TODO check what will if there is no connection to database
-            int output = -1;  
+            int id = -1;  
 
             using(SqlConnection connection = new SqlConnection(_dbConnectionStr))
             {
@@ -60,25 +96,24 @@ namespace AttendanceLibrary.DataAccess
 
                 connection.Execute("dbo.spAddTeacher", p, commandType: CommandType.StoredProcedure);
 
-                output = p.Get<int>("@Id"); 
+                id = p.Get<int>("@Id"); 
             }
 
-            return output;
+            return id;
         }
-        public static bool TeacherExists(string firstName, string lastName)
+        public static void  AddGroup(Group group)
         {
-            int teachers = 0;  
-
             using(SqlConnection connection = new SqlConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
-                p.Add("@FirstName", firstName);
-                p.Add("@LastName", lastName);
+                p.Add("@Name", group.Name);
+                p.Add("@CuratorId", group.CuratorId);
 
-                teachers = connection.ExecuteScalar<int>("dbo.spCheckTeacherByFirstLastName", p, commandType:CommandType.StoredProcedure);
+                connection.Execute("dbo.spAddGroup", p, commandType: CommandType.StoredProcedure);
             }
-            return teachers != 0; 
         }
+
+    //
         public static LoggedUser GetLoginInfo(string login)
         {
             LoggedUser output = null; 
@@ -99,7 +134,7 @@ namespace AttendanceLibrary.DataAccess
         public static Teacher GetTeacherByLogin(string login)
         {
             Teacher output = null;
-            
+          
             if (UserExists(login))
             {
                 using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
@@ -108,12 +143,21 @@ namespace AttendanceLibrary.DataAccess
                     p.Add("@Login", login);
                     
                     //TODO test if there is no teacher
-                    output = connection.Query<Teacher>("dbo.GetTeacherByLogin", p, commandType: CommandType.StoredProcedure).First();
+                    output = connection.Query<Teacher>("dbo.GetTeacherByLogin", p, commandType: CommandType.StoredProcedure).FirstOrDefault(); 
                 }
             }
 
             return output; 
         }
+        public static Teacher[] GetAllTeachers()
+        {
+            Teacher[] teachers;
+            using (SqlConnection connection = new SqlConnection(_dbConnectionStr) )
+            {
+                teachers = connection.Query<Teacher>("dbo.spGetAllTeachers", commandType: CommandType.StoredProcedure).ToArray(); 
+            }
 
+            return teachers; 
+        }
     }
 }

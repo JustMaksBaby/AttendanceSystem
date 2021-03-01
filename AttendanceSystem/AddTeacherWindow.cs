@@ -134,6 +134,9 @@ namespace AttendanceSystem
             return true; 
         }
 
-  
+        private void AddTeacherWindow_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

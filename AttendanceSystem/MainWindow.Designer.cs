@@ -224,6 +224,7 @@
             this.addGroupLinkLabel.TabIndex = 3;
             this.addGroupLinkLabel.TabStop = true;
             this.addGroupLinkLabel.Text = "Add group";
+            this.addGroupLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.addGroupLinkLabel_LinkClicked);
             // 
             // MainWindow
             // 

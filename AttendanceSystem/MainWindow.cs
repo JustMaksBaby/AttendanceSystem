@@ -40,5 +40,13 @@ namespace AttendanceSystem
         {
 
         }
+
+        private void addGroupLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AddGroupWindow groupWindow = new AddGroupWindow();
+            groupWindow.ShowDialog();
+            groupWindow.Dispose();
+
+        }
     }
 }

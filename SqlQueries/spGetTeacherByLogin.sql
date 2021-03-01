@@ -6,9 +6,9 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-    Select Teachers.FirstName, Teachers.LastName, Teachers.Patronymic
+    Select Teachers.Id, Teachers.FirstName, Teachers.LastName, Teachers.Patronymic
 	FROM Teachers  
-	JOIN LoginData ON LoginData.UserId = Teachers.Id
+	JOIN LoginData ON LoginData.UserId = Teachers.Id AND Login=@Login;
 
 END
 GO
