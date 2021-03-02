@@ -132,6 +132,7 @@
             // 
             // statusesComboBox
             // 
+            this.statusesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statusesComboBox.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusesComboBox.FormattingEnabled = true;
             this.statusesComboBox.Location = new System.Drawing.Point(140, 208);
@@ -181,7 +182,6 @@
             this.Name = "AddTeacherWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add user";
-            this.Load += new System.EventHandler(this.AddTeacherWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -59,7 +59,7 @@
             this.tabControl.FontSize = MetroFramework.MetroTabControlSize.Tall;
             this.tabControl.Location = new System.Drawing.Point(20, 60);
             this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
+            this.tabControl.SelectedIndex = 1;
             this.tabControl.Size = new System.Drawing.Size(941, 523);
             this.tabControl.TabIndex = 0;
             // 
@@ -121,6 +121,7 @@
             // 
             // groupsComboBox
             // 
+            this.groupsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.groupsComboBox.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupsComboBox.FormattingEnabled = true;
             this.groupsComboBox.Location = new System.Drawing.Point(3, 44);
@@ -156,6 +157,7 @@
             // 
             // lessonsComboBox
             // 
+            this.lessonsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lessonsComboBox.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lessonsComboBox.FormattingEnabled = true;
             this.lessonsComboBox.Location = new System.Drawing.Point(157, 34);
@@ -186,6 +188,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(0, 34);
@@ -207,9 +210,10 @@
             // addStudentLinkLabel
             // 
             this.addStudentLinkLabel.AutoSize = true;
+            this.addStudentLinkLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.addStudentLinkLabel.Location = new System.Drawing.Point(877, 40);
             this.addStudentLinkLabel.Name = "addStudentLinkLabel";
-            this.addStudentLinkLabel.Size = new System.Drawing.Size(84, 17);
+            this.addStudentLinkLabel.Size = new System.Drawing.Size(86, 19);
             this.addStudentLinkLabel.TabIndex = 2;
             this.addStudentLinkLabel.TabStop = true;
             this.addStudentLinkLabel.Text = "Add student";

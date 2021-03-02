@@ -54,7 +54,6 @@ namespace AttendanceSystem
         {
             return _IsGroupNameValid(group.Name); 
         }
-
         private bool _IsGroupNameValid(string name)
         {
             if (!SqlConnector.GroupExists(name) && name.Length >= 4)

@@ -38,7 +38,9 @@ namespace AttendanceSystem
 
         private void addStudentLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            AddStudentWindow addStudentWindow = new AddStudentWindow();
+            addStudentWindow.ShowDialog();
+            addStudentWindow.Dispose(); 
         }
 
         private void addGroupLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

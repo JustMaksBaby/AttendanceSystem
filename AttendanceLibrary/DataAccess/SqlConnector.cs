@@ -112,6 +112,20 @@ namespace AttendanceLibrary.DataAccess
                 connection.Execute("dbo.spAddGroup", p, commandType: CommandType.StoredProcedure);
             }
         }
+        public static void AddStudent(Student student)
+        {
+            using (SqlConnection connection = new SqlConnection(_dbConnectionStr) )
+            {
+                DynamicParameters p = new DynamicParameters();
+                p.Add("@FirstName", student.FirstName); 
+                p.Add("@LastName", student.LastName); 
+                p.Add("@Patronymic", student.Patronymic); 
+                p.Add("@CardId", student.CardId);
+                p.Add("@GroupName", student.RalatedGroup);
+
+                connection.Execute("dbo.spAddStudent", p, commandType: CommandType.StoredProcedure); 
+            }
+        }
 
     //
         public static LoggedUser GetLoginInfo(string login)
@@ -151,13 +165,24 @@ namespace AttendanceLibrary.DataAccess
         }
         public static Teacher[] GetAllTeachers()
         {
-            Teacher[] teachers;
+            Teacher[] teachers = null;
             using (SqlConnection connection = new SqlConnection(_dbConnectionStr) )
             {
                 teachers = connection.Query<Teacher>("dbo.spGetAllTeachers", commandType: CommandType.StoredProcedure).ToArray(); 
             }
 
             return teachers; 
+        }
+        public static Group[] GetAllGroups()
+        {
+            Group[] groups = null; 
+
+            using(SqlConnection connection = new SqlConnection(_dbConnectionStr) )
+            {
+                groups = connection.Query<Group>("dbo.spGetAllGroups", commandType: CommandType.StoredProcedure).ToArray();     
+            }
+
+            return groups; 
         }
     }
 }

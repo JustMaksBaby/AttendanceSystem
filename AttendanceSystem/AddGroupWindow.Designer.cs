@@ -44,6 +44,7 @@
             // 
             // curatorsComboBox
             // 
+            this.curatorsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.curatorsComboBox.FormattingEnabled = true;
             this.curatorsComboBox.Location = new System.Drawing.Point(151, 83);
             this.curatorsComboBox.Name = "curatorsComboBox";

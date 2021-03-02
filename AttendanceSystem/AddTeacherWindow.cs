@@ -24,7 +24,7 @@ namespace AttendanceSystem
 
             statusesComboBox.Items.Add("admin");
             statusesComboBox.Items.Add("limited");
-            statusesComboBox.SelectedItem = "admin"; 
+            //statusesComboBox.SelectedItem = "admin"; 
         }
 
     //--    
@@ -84,7 +84,6 @@ namespace AttendanceSystem
         }
         private bool _IsPasswordValid(string password)
         {
-            
             if (password.Length < 8 || password.Length > 15)
             {
                 _fieldError = _fieldError??"Password has wrong length. It shoud be  8 <= password <= 15";
@@ -132,11 +131,6 @@ namespace AttendanceSystem
             }
 
             return true; 
-        }
-
-        private void AddTeacherWindow_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

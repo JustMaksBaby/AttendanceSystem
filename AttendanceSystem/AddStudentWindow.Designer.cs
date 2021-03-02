@@ -33,7 +33,7 @@
             this.studentLastNameLabel = new MetroFramework.Controls.MetroLabel();
             this.studentLastNameTextBox = new MetroFramework.Controls.MetroTextBox();
             this.studentPatronymicLabel = new MetroFramework.Controls.MetroLabel();
-            this.patronymicTextBox = new MetroFramework.Controls.MetroTextBox();
+            this.studentPatronymicTextBox = new MetroFramework.Controls.MetroTextBox();
             this.cardIdLabel = new MetroFramework.Controls.MetroLabel();
             this.cardIdTextBox = new MetroFramework.Controls.MetroTextBox();
             this.groupsComboBox = new System.Windows.Forms.ComboBox();
@@ -85,12 +85,12 @@
             this.studentPatronymicLabel.TabIndex = 13;
             this.studentPatronymicLabel.Text = "Patronymic:";
             // 
-            // patronymicTextBox
+            // studentPatronymicTextBox
             // 
-            this.patronymicTextBox.Location = new System.Drawing.Point(116, 116);
-            this.patronymicTextBox.Name = "patronymicTextBox";
-            this.patronymicTextBox.Size = new System.Drawing.Size(231, 24);
-            this.patronymicTextBox.TabIndex = 12;
+            this.studentPatronymicTextBox.Location = new System.Drawing.Point(116, 116);
+            this.studentPatronymicTextBox.Name = "studentPatronymicTextBox";
+            this.studentPatronymicTextBox.Size = new System.Drawing.Size(231, 24);
+            this.studentPatronymicTextBox.TabIndex = 12;
             // 
             // cardIdLabel
             // 
@@ -111,6 +111,7 @@
             // 
             // groupsComboBox
             // 
+            this.groupsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.groupsComboBox.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupsComboBox.FormattingEnabled = true;
             this.groupsComboBox.Location = new System.Drawing.Point(116, 196);
@@ -135,6 +136,7 @@
             this.addButton.Size = new System.Drawing.Size(153, 28);
             this.addButton.TabIndex = 18;
             this.addButton.Text = "Add";
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // AddStudentWindow
             // 
@@ -148,7 +150,7 @@
             this.Controls.Add(this.cardIdLabel);
             this.Controls.Add(this.cardIdTextBox);
             this.Controls.Add(this.studentPatronymicLabel);
-            this.Controls.Add(this.patronymicTextBox);
+            this.Controls.Add(this.studentPatronymicTextBox);
             this.Controls.Add(this.studentLastNameLabel);
             this.Controls.Add(this.studentLastNameTextBox);
             this.Controls.Add(this.studentFirstNameLabel);
@@ -171,7 +173,7 @@
         private MetroFramework.Controls.MetroLabel studentLastNameLabel;
         private MetroFramework.Controls.MetroTextBox studentLastNameTextBox;
         private MetroFramework.Controls.MetroLabel studentPatronymicLabel;
-        private MetroFramework.Controls.MetroTextBox patronymicTextBox;
+        private MetroFramework.Controls.MetroTextBox studentPatronymicTextBox;
         private MetroFramework.Controls.MetroLabel cardIdLabel;
         private MetroFramework.Controls.MetroTextBox cardIdTextBox;
         private System.Windows.Forms.ComboBox groupsComboBox;
