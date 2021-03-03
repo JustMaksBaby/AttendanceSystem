@@ -14,8 +14,8 @@ namespace AttendanceSystem
 {
     public partial class AddGroupWindow : Form
     {
-        string _fieldError = null;
-        Teacher[] teachers; 
+        private string _fieldError = "No description"; //tracks errors in fields
+        private Teacher[] teachers; 
         public AddGroupWindow()
         {
             InitializeComponent();

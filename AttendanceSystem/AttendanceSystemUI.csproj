@@ -62,6 +62,12 @@
     <Compile Include="AddGroupWindow.Designer.cs">
       <DependentUpon>AddGroupWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddLessonWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddLessonWindow.Designer.cs">
+      <DependentUpon>AddLessonWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddStudentWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddGroupWindow.resx">
       <DependentUpon>AddGroupWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddLessonWindow.resx">
+      <DependentUpon>AddLessonWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddStudentWindow.resx">
       <DependentUpon>AddStudentWindow.cs</DependentUpon>

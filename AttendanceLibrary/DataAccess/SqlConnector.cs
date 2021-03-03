@@ -59,6 +59,19 @@ namespace AttendanceLibrary.DataAccess
 
             return groupsInDb > 0;
         }
+        public static bool LessonExists(string lessonName)
+        {
+            int lessonsInDb = 0; 
+            using(SqlConnection connection = new SqlConnection (_dbConnectionStr))
+            {
+                DynamicParameters p = new DynamicParameters();
+                p.Add("@Name", lessonName);
+
+                lessonsInDb = connection.ExecuteScalar<int>("dbo.spCheckLessonExists", p, commandType: CommandType.StoredProcedure); 
+            }
+
+            return lessonsInDb > 0; 
+        }
     //
         public static void AddUser(ILoginInfo  loginInfo, Teacher teacher)
         {
@@ -126,6 +139,16 @@ namespace AttendanceLibrary.DataAccess
                 connection.Execute("dbo.spAddStudent", p, commandType: CommandType.StoredProcedure); 
             }
         }
+        public static void AddLesson(Lesson lesson)
+        {
+            using(SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            {
+                DynamicParameters p = new DynamicParameters();
+                p.Add("@Name", lesson.Name);
+
+                connection.Execute("dbo.spAddLesson", p, commandType: CommandType.StoredProcedure); 
+            }
+        }
 
     //
         public static LoggedUser GetLoginInfo(string login)
@@ -183,6 +206,17 @@ namespace AttendanceLibrary.DataAccess
             }
 
             return groups; 
+        }
+        public static Lesson[] GetAllLessons()
+        {
+            Lesson[] output = null; 
+
+            using(SqlConnection connection = new SqlConnection(_dbConnectionStr) )
+            {
+                output = connection.Query<Lesson>("dbo.spGetAllLessons", commandType: CommandType.StoredProcedure).ToArray(); 
+            }
+
+            return output;  
         }
     }
 }

@@ -44,6 +44,7 @@
             this.addTeacherLinkLabel = new System.Windows.Forms.LinkLabel();
             this.addStudentLinkLabel = new System.Windows.Forms.LinkLabel();
             this.addGroupLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.addLessonLinkLabel = new System.Windows.Forms.LinkLabel();
             this.tabControl.SuspendLayout();
             this.attendanceTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.attendanceGridView)).BeginInit();
@@ -230,11 +231,23 @@
             this.addGroupLinkLabel.Text = "Add group";
             this.addGroupLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.addGroupLinkLabel_LinkClicked);
             // 
+            // addLessonLinkLabel
+            // 
+            this.addLessonLinkLabel.AutoSize = true;
+            this.addLessonLinkLabel.Location = new System.Drawing.Point(615, 40);
+            this.addLessonLinkLabel.Name = "addLessonLinkLabel";
+            this.addLessonLinkLabel.Size = new System.Drawing.Size(78, 17);
+            this.addLessonLinkLabel.TabIndex = 4;
+            this.addLessonLinkLabel.TabStop = true;
+            this.addLessonLinkLabel.Text = "Add lesson";
+            this.addLessonLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.addLessonLinkLabel_LinkClicked);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 603);
+            this.Controls.Add(this.addLessonLinkLabel);
             this.Controls.Add(this.addGroupLinkLabel);
             this.Controls.Add(this.addStudentLinkLabel);
             this.Controls.Add(this.addTeacherLinkLabel);
@@ -272,6 +285,7 @@
         private System.Windows.Forms.LinkLabel addTeacherLinkLabel;
         private System.Windows.Forms.LinkLabel addStudentLinkLabel;
         private System.Windows.Forms.LinkLabel addGroupLinkLabel;
+        private System.Windows.Forms.LinkLabel addLessonLinkLabel;
     }
 }
 
