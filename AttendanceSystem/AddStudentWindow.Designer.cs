@@ -39,13 +39,14 @@
             this.groupsComboBox = new System.Windows.Forms.ComboBox();
             this.groupLabel = new System.Windows.Forms.Label();
             this.addButton = new MetroFramework.Controls.MetroButton();
+            this.optionalDataLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // studentFirstNameLabel
             // 
             this.studentFirstNameLabel.AutoSize = true;
             this.studentFirstNameLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.studentFirstNameLabel.Location = new System.Drawing.Point(12, 36);
+            this.studentFirstNameLabel.Location = new System.Drawing.Point(11, 37);
             this.studentFirstNameLabel.Name = "studentFirstNameLabel";
             this.studentFirstNameLabel.Size = new System.Drawing.Size(98, 25);
             this.studentFirstNameLabel.TabIndex = 9;
@@ -79,11 +80,11 @@
             // 
             this.studentPatronymicLabel.AutoSize = true;
             this.studentPatronymicLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.studentPatronymicLabel.Location = new System.Drawing.Point(12, 115);
+            this.studentPatronymicLabel.Location = new System.Drawing.Point(-2, 115);
             this.studentPatronymicLabel.Name = "studentPatronymicLabel";
-            this.studentPatronymicLabel.Size = new System.Drawing.Size(104, 25);
+            this.studentPatronymicLabel.Size = new System.Drawing.Size(112, 25);
             this.studentPatronymicLabel.TabIndex = 13;
-            this.studentPatronymicLabel.Text = "Patronymic:";
+            this.studentPatronymicLabel.Text = "*Patronymic:";
             // 
             // studentPatronymicTextBox
             // 
@@ -138,12 +139,22 @@
             this.addButton.Text = "Add";
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
+            // optionalDataLabel
+            // 
+            this.optionalDataLabel.AutoSize = true;
+            this.optionalDataLabel.Location = new System.Drawing.Point(237, 9);
+            this.optionalDataLabel.Name = "optionalDataLabel";
+            this.optionalDataLabel.Size = new System.Drawing.Size(119, 19);
+            this.optionalDataLabel.TabIndex = 19;
+            this.optionalDataLabel.Text = "* - optional data";
+            // 
             // AddStudentWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(368, 314);
+            this.Controls.Add(this.optionalDataLabel);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.groupLabel);
             this.Controls.Add(this.groupsComboBox);
@@ -179,5 +190,6 @@
         private System.Windows.Forms.ComboBox groupsComboBox;
         private System.Windows.Forms.Label groupLabel;
         private MetroFramework.Controls.MetroButton addButton;
+        private System.Windows.Forms.Label optionalDataLabel;
     }
 }

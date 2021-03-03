@@ -41,13 +41,14 @@
             this.statusesComboBox = new System.Windows.Forms.ComboBox();
             this.loginLabel = new MetroFramework.Controls.MetroLabel();
             this.loginTextBox = new MetroFramework.Controls.MetroTextBox();
+            this.optionalDataLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lastNameLabel
             // 
             this.lastNameLabel.AutoSize = true;
             this.lastNameLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.lastNameLabel.Location = new System.Drawing.Point(13, 52);
+            this.lastNameLabel.Location = new System.Drawing.Point(21, 92);
             this.lastNameLabel.Name = "lastNameLabel";
             this.lastNameLabel.Size = new System.Drawing.Size(97, 25);
             this.lastNameLabel.TabIndex = 8;
@@ -57,7 +58,7 @@
             // 
             this.firstNameLabel.AutoSize = true;
             this.firstNameLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.firstNameLabel.Location = new System.Drawing.Point(12, 9);
+            this.firstNameLabel.Location = new System.Drawing.Point(21, 47);
             this.firstNameLabel.Name = "firstNameLabel";
             this.firstNameLabel.Size = new System.Drawing.Size(98, 25);
             this.firstNameLabel.TabIndex = 7;
@@ -65,21 +66,21 @@
             // 
             // lastNameTextBox
             // 
-            this.lastNameTextBox.Location = new System.Drawing.Point(140, 54);
+            this.lastNameTextBox.Location = new System.Drawing.Point(149, 92);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(231, 23);
             this.lastNameTextBox.TabIndex = 6;
             // 
             // firstNameTextBox
             // 
-            this.firstNameTextBox.Location = new System.Drawing.Point(140, 15);
+            this.firstNameTextBox.Location = new System.Drawing.Point(149, 53);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(231, 23);
             this.firstNameTextBox.TabIndex = 5;
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(140, 269);
+            this.addButton.Location = new System.Drawing.Point(140, 303);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(115, 42);
             this.addButton.TabIndex = 9;
@@ -90,15 +91,15 @@
             // 
             this.patronymicLabel.AutoSize = true;
             this.patronymicLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.patronymicLabel.Location = new System.Drawing.Point(12, 93);
+            this.patronymicLabel.Location = new System.Drawing.Point(7, 131);
             this.patronymicLabel.Name = "patronymicLabel";
-            this.patronymicLabel.Size = new System.Drawing.Size(104, 25);
+            this.patronymicLabel.Size = new System.Drawing.Size(112, 25);
             this.patronymicLabel.TabIndex = 11;
-            this.patronymicLabel.Text = "Patronymic:";
+            this.patronymicLabel.Text = "*Patronymic:";
             // 
             // patronymicTextBox
             // 
-            this.patronymicTextBox.Location = new System.Drawing.Point(140, 95);
+            this.patronymicTextBox.Location = new System.Drawing.Point(149, 133);
             this.patronymicTextBox.Name = "patronymicTextBox";
             this.patronymicTextBox.Size = new System.Drawing.Size(231, 23);
             this.patronymicTextBox.TabIndex = 10;
@@ -107,7 +108,7 @@
             // 
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.passwordLabel.Location = new System.Drawing.Point(12, 171);
+            this.passwordLabel.Location = new System.Drawing.Point(21, 209);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(89, 25);
             this.passwordLabel.TabIndex = 13;
@@ -115,7 +116,7 @@
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Location = new System.Drawing.Point(140, 171);
+            this.passwordTextBox.Location = new System.Drawing.Point(149, 209);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(231, 23);
             this.passwordTextBox.TabIndex = 12;
@@ -124,7 +125,7 @@
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.statusLabel.Location = new System.Drawing.Point(15, 208);
+            this.statusLabel.Location = new System.Drawing.Point(24, 246);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(63, 25);
             this.statusLabel.TabIndex = 15;
@@ -135,7 +136,7 @@
             this.statusesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statusesComboBox.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusesComboBox.FormattingEnabled = true;
-            this.statusesComboBox.Location = new System.Drawing.Point(140, 208);
+            this.statusesComboBox.Location = new System.Drawing.Point(149, 246);
             this.statusesComboBox.Name = "statusesComboBox";
             this.statusesComboBox.Size = new System.Drawing.Size(231, 28);
             this.statusesComboBox.TabIndex = 16;
@@ -144,7 +145,7 @@
             // 
             this.loginLabel.AutoSize = true;
             this.loginLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.loginLabel.Location = new System.Drawing.Point(15, 131);
+            this.loginLabel.Location = new System.Drawing.Point(24, 169);
             this.loginLabel.Name = "loginLabel";
             this.loginLabel.Size = new System.Drawing.Size(61, 25);
             this.loginLabel.TabIndex = 18;
@@ -152,10 +153,19 @@
             // 
             // loginTextBox
             // 
-            this.loginTextBox.Location = new System.Drawing.Point(140, 133);
+            this.loginTextBox.Location = new System.Drawing.Point(149, 171);
             this.loginTextBox.Name = "loginTextBox";
             this.loginTextBox.Size = new System.Drawing.Size(231, 23);
             this.loginTextBox.TabIndex = 17;
+            // 
+            // optionalDataLabel
+            // 
+            this.optionalDataLabel.AutoSize = true;
+            this.optionalDataLabel.Location = new System.Drawing.Point(272, 9);
+            this.optionalDataLabel.Name = "optionalDataLabel";
+            this.optionalDataLabel.Size = new System.Drawing.Size(108, 17);
+            this.optionalDataLabel.TabIndex = 20;
+            this.optionalDataLabel.Text = "* - optional data";
             // 
             // AddTeacherWindow
             // 
@@ -163,6 +173,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(404, 357);
+            this.Controls.Add(this.optionalDataLabel);
             this.Controls.Add(this.loginLabel);
             this.Controls.Add(this.loginTextBox);
             this.Controls.Add(this.statusesComboBox);
@@ -202,5 +213,6 @@
         private System.Windows.Forms.ComboBox statusesComboBox;
         private MetroFramework.Controls.MetroLabel loginLabel;
         private MetroFramework.Controls.MetroTextBox loginTextBox;
+        private System.Windows.Forms.Label optionalDataLabel;
     }
 }

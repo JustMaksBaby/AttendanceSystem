@@ -24,7 +24,7 @@ namespace AttendanceSystem
 
             statusesComboBox.Items.Add("admin");
             statusesComboBox.Items.Add("limited");
-            //statusesComboBox.SelectedItem = "admin"; 
+            statusesComboBox.SelectedItem = "admin"; 
         }
 
     //--    
