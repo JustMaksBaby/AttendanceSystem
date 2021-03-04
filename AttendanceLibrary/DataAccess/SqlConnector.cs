@@ -180,7 +180,7 @@ namespace AttendanceLibrary.DataAccess
                     p.Add("@Login", login);
                     
                     //TODO test if there is no teacher
-                    output = connection.Query<Teacher>("dbo.GetTeacherByLogin", p, commandType: CommandType.StoredProcedure).FirstOrDefault(); 
+                    output = connection.Query<Teacher>("dbo.spGetTeacherByLogin", p, commandType: CommandType.StoredProcedure).FirstOrDefault(); 
                 }
             }
 

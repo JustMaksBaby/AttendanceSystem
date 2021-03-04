@@ -16,12 +16,11 @@ namespace AttendanceSystem
 {
     public partial class LoginWindow : Form
     {
-        private string _fieldError = null; // tracks errors in teacher information fields
-        private Teacher _teacher = null; 
+        private string _fieldError = "No description"; // tracks errors in teacher information fields
+        public Teacher loggedTeacher = null; 
         public LoginWindow()
         {
             InitializeComponent();
-            _teacher = new Teacher(); 
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -32,7 +31,7 @@ namespace AttendanceSystem
 
             if(_ValidateLoginData(testedUser))
             {
-                _teacher = SqlConnector.GetTeacherByLogin(testedUser.Login);   
+                loggedTeacher = SqlConnector.GetTeacherByLogin(testedUser.Login);   
 
                 this.DialogResult = DialogResult.OK; 
                 
@@ -41,12 +40,12 @@ namespace AttendanceSystem
             else
             {
                 MessageBox.Show(_fieldError,"Info");
-                _fieldError = null;  
+                _fieldError = "No description";  
             }
 
         }
 
-        //
+    //
         private bool  _ValidateLoginData(ILoginInfo testedUser)
         {
             if(_IsLoginValid(testedUser))

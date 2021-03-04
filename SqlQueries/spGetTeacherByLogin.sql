@@ -6,7 +6,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-    Select Teachers.Id, Teachers.FirstName, Teachers.LastName, Teachers.Patronymic
+    Select Teachers.Id, Teachers.FirstName, Teachers.LastName, Teachers.Patronymic,Teachers.SystemStatus
 	FROM Teachers  
 	JOIN LoginData ON LoginData.UserId = Teachers.Id AND Login=@Login;
 

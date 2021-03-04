@@ -7,12 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AttendanceLibrary.Models; 
+using AttendanceLibrary.Models;
+using AttendanceLibrary.DataAccess; 
 
 namespace AttendanceSystem
 {
     public partial class MainWindow : MetroFramework.Forms.MetroForm
     {
+        private Group[]  _existingGroups = SqlConnector.GetAllGroups();
+        private Lesson[] _existingLessons = SqlConnector.GetAllLessons();
+        private Teacher _loggedTeacher = null; 
+
+    //
         public MainWindow()
         {
             InitializeComponent();
@@ -20,13 +26,34 @@ namespace AttendanceSystem
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            //LoginWindow loginWindow = new LoginWindow();
+            LoginWindow loginWindow = new LoginWindow();
 
-            //if (loginWindow.ShowDialog() != DialogResult.OK)
-            //{
-            //    System.Windows.Forms.Application.Exit();
-            //};
+            if (loginWindow.ShowDialog() != DialogResult.OK)
+            {
+                System.Windows.Forms.Application.Exit();
+            }
+            else
+            {
+                _loggedTeacher = loginWindow.loggedTeacher; 
 
+
+                groups1ComboBox.DataSource = _existingGroups;
+                groups1ComboBox.DisplayMember = "Name";
+                groups2ComboBox.DataSource = _existingGroups;
+                groups2ComboBox.DisplayMember = "Name";
+
+                lessonsComboBox.DataSource = _existingLessons;
+                lessonsComboBox.DisplayMember = "Name"; 
+
+
+                if(_loggedTeacher.SystemStatus == "limited")
+                {
+                    addTeacherLinkLabel.Hide();     
+                    addStudentLinkLabel.Hide();     
+                    addGroupLinkLabel.Hide();     
+                    addLessonLinkLabel.Hide();     
+                }
+            }
         }
 
         private void addTeacherLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
