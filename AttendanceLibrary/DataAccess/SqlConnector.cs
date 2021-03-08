@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using AttendanceLibrary.Models;
 using System.Collections.Generic;
 using AttendanceLibrary.PasswordProcessing;
+using System.Data.Common;
+
 namespace AttendanceLibrary.DataAccess
 {
     public class SqlConnector
@@ -217,6 +219,21 @@ namespace AttendanceLibrary.DataAccess
             }
 
             return output;  
+        }
+        
+    //
+        public static Student[] GetStudensByGroup(string groupName)
+        {
+            Student[] students = null; 
+
+            using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            {
+                DynamicParameters p = new DynamicParameters();
+                p.Add("@GroupName", groupName); 
+                students = connection.Query<Student>("spGetStudentsByGroup", p, commandType: CommandType.StoredProcedure).ToArray();  
+            }
+
+            return students; 
         }
     }
 }

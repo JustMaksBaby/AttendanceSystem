@@ -13,5 +13,6 @@ namespace AttendanceLibrary.Models
        public string Patronymic { get; set; }
        public int CardId { get; set; }
        public string RalatedGroup { get; set; }
+       public string FullName { get; set; }
     }
 }
