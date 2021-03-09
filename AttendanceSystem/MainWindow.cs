@@ -17,10 +17,13 @@ namespace AttendanceSystem
         private Group[]  _existingGroups =  SqlConnector.GetAllGroups(); // all currently existing groups
         private Lesson[] _existingLessons = SqlConnector.GetAllLessons(); // // all currently existing lessons
 
-        private Teacher _loggedTeacher = null;
+        private Teacher _loggedTeacher = null; // teached logged into the system
 
         private DataTable _lessonAttendanceTable = new DataTable(); // table for lesson`s attandance
         private DataTable _allTimeAttendanceTable = new DataTable(); //table for attandance for all lessons
+
+        private ContextMenu _appearanceChoisesMenu = new ContextMenu(); // menu with choises for a student appearance
+        private CellPosition _clickedCell = new CellPosition(); // a cell which mouse was pressed in
         
 
     //
@@ -30,6 +33,12 @@ namespace AttendanceSystem
 
             _SetupLessonAttendanceDataTable(_lessonAttendanceTable);
             _SetupLessonAttendanceDataGrid(_lessonAttendanceTable);
+
+            _InitComboBoxesTab1();
+            _InitComboBoxesTab2();
+
+            _InitAppearanceChoisesMenu(); 
+          
         }
         private void MainWindow_Load(object sender, EventArgs e)
         {
@@ -42,20 +51,6 @@ namespace AttendanceSystem
             //else
             //{
             //    _loggedTeacher = loginWindow.loggedTeacher; 
-
-
-                groups1ComboBox.DataSource = _existingGroups;
-                groups1ComboBox.DisplayMember = "Name";
-                groups2ComboBox.DataSource = _existingGroups;
-                groups2ComboBox.DisplayMember = "Name";
-
-                lessons1ComboBox.DataSource = _existingLessons;
-                lessons1ComboBox.DisplayMember = "Name";
-                lessons2ComboBox.DataSource = _existingLessons;
-                lessons2ComboBox.DisplayMember = "Name";
-
-
-           
 
 
             //    if(_loggedTeacher.SystemStatus == "limited")
@@ -96,11 +91,26 @@ namespace AttendanceSystem
         {
             _UpdateLessonAttendanceDataTable(_lessonAttendanceTable);
         }
+        private void lessonAttendanceGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && e.ColumnIndex == 1)
+            {
+                _clickedCell.Column = e.ColumnIndex;
+                _clickedCell.Row = e.RowIndex;
+
+                Point pos = this.PointToClient(Cursor.Position); // get current cursor position in the client area
+                _appearanceChoisesMenu.Show(this, pos, LeftRightAlignment.Right);
+            }
+        }
+        private void appearanceChoisesMenu_Clicked(object sender, EventArgs args)
+        {
+            _lessonAttendanceTable.Rows[_clickedCell.Row].SetField(_clickedCell.Column, ((MenuItem)sender).Text);
+        }
+
 
     //
         private void _SetupLessonAttendanceDataTable(DataTable lessonAttendanceTable)
         {
-            lessonAttendanceTable.TableName = "LessonAttendance";
             lessonAttendanceTable.Columns.Add("Students",typeof(string));
             lessonAttendanceTable.Columns.Add("Attendance", typeof(string));
         }
@@ -119,18 +129,48 @@ namespace AttendanceSystem
             //setting for 'Attendance' column
             column = lessonAttendanceGridView.Columns[1];
             column.Width = 150; // width in pixels
+            column.ReadOnly = true;
         }
         private void _UpdateLessonAttendanceDataTable(DataTable lessonAttendanceTable)
         {
             if (lessonAttendanceTable.Rows.Count > 0) lessonAttendanceTable.Clear(); 
             
-            Student[] students = SqlConnector.GetStudensByGroup(groups2ComboBox.Text);
+            Student[] students = SqlConnector.GetStudensByGroup(groupComboBox_tab2.Text);
             foreach(Student student in students)
             {
                 lessonAttendanceTable.Rows.Add(new object[] { student.FullName.Trim(), null }); 
             }
         }
+        private void _InitComboBoxesTab1()
+        {
+            groupComboBox_tab1.DataSource = _existingGroups;
+            groupComboBox_tab1.DisplayMember = "Name";
 
-       
+            lessonComboBox_tab1.DataSource = _existingLessons;
+            lessonComboBox_tab1.DisplayMember = "Name";
+        }
+        private void _InitComboBoxesTab2()
+        {
+            groupComboBox_tab2.DataSource = _existingGroups;
+            groupComboBox_tab2.DisplayMember = "Name";
+
+            lessonComboBox_tab2.DataSource = _existingLessons;
+            lessonComboBox_tab2.DisplayMember = "Name";
+        }
+        private void _InitAppearanceChoisesMenu()
+        {
+            MenuItem menuAbsent = new MenuItem();
+            MenuItem menuPresent = new MenuItem();
+            
+            menuAbsent.Text = "absent";
+            menuPresent.Text = "present";
+
+            menuAbsent.Click += appearanceChoisesMenu_Clicked;
+            menuPresent.Click += appearanceChoisesMenu_Clicked;
+
+            _appearanceChoisesMenu.MenuItems.Add(menuAbsent);
+            _appearanceChoisesMenu.MenuItems.Add(menuPresent); 
+        }
+
     }
 }

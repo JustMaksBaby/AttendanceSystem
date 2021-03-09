@@ -80,6 +80,7 @@
     <Compile Include="AddTeacherWindow.Designer.cs">
       <DependentUpon>AddTeacherWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="CellPosition.cs" />
     <Compile Include="LoginWindow.cs">
       <SubType>Form</SubType>
     </Compile>
