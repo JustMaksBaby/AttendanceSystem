@@ -8,11 +8,15 @@ namespace AttendanceLibrary.Models
 {
     public class Student
     {
+        public int Id { get; set; }
        public string FirstName { get; set; }
        public string LastName { get; set; }
        public string Patronymic { get; set; }
        public int CardId { get; set; }
        public string RalatedGroup { get; set; }
-       public string FullName { get; set; }
+       public string FullName 
+        {
+            get => FirstName + ' ' + LastName + ' ' + Patronymic; 
+        }
     }
 }

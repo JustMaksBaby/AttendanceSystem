@@ -151,6 +151,18 @@ namespace AttendanceLibrary.DataAccess
                 connection.Execute("dbo.spAddLesson", p, commandType: CommandType.StoredProcedure); 
             }
         }
+        public static void AddAttendanceInfo(List<AttendanceInfo>  records)
+        {
+            using(SqlConnection connector = new SqlConnection(_dbConnectionStr))
+            {
+                foreach(AttendanceInfo record in records)
+                {
+                    var parameters = new { Date = record.Date, StudentId = record.StudentId, 
+                                         Lesson = record.Lesson, Status = record.Status }; 
+                    connector.Execute("spAddAttendanceInfo", parameters, commandType: CommandType.StoredProcedure); 
+                }
+            }
+        }
 
     //
         public static LoggedUser GetLoginInfo(string login)

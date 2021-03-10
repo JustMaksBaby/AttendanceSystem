@@ -14,17 +14,18 @@ namespace AttendanceSystem
 {
     public partial class MainWindow : MetroFramework.Forms.MetroForm
     {
+        private Teacher _loggedTeacher = null; // teached logged into the system
+
         private Group[]  _existingGroups =  SqlConnector.GetAllGroups(); // all currently existing groups
         private Lesson[] _existingLessons = SqlConnector.GetAllLessons(); // // all currently existing lessons
-
-        private Teacher _loggedTeacher = null; // teached logged into the system
 
         private DataTable _lessonAttendanceTable = new DataTable(); // table for lesson`s attandance
         private DataTable _allTimeAttendanceTable = new DataTable(); //table for attandance for all lessons
 
-        private ContextMenu _appearanceChoisesMenu = new ContextMenu(); // menu with choises for a student appearance
+        private ContextMenu _studentAttendanceStatusMenu = new ContextMenu(); // menu with choises for a student`s attendance
         private CellPosition _clickedCell = new CellPosition(); // a cell which mouse was pressed in
-        
+
+        Student[] _students = null; // array of students currently shown in lessonAttendanceGridView
 
     //
         public MainWindow()
@@ -37,7 +38,7 @@ namespace AttendanceSystem
             _InitComboBoxesTab1();
             _InitComboBoxesTab2();
 
-            _InitAppearanceChoisesMenu(); 
+            _InitStudentAttandanceStatusMenu(); 
           
         }
         private void MainWindow_Load(object sender, EventArgs e)
@@ -99,12 +100,23 @@ namespace AttendanceSystem
                 _clickedCell.Row = e.RowIndex;
 
                 Point pos = this.PointToClient(Cursor.Position); // get current cursor position in the client area
-                _appearanceChoisesMenu.Show(this, pos, LeftRightAlignment.Right);
+                _studentAttendanceStatusMenu.Show(this, pos, LeftRightAlignment.Right);
             }
         }
-        private void appearanceChoisesMenu_Clicked(object sender, EventArgs args)
+        private void studentAttendanceStatusMenuItem_Clicked(object sender, EventArgs args)
         {
             _lessonAttendanceTable.Rows[_clickedCell.Row].SetField(_clickedCell.Column, ((MenuItem)sender).Text);
+        }
+        private void saveButton_tab2_Click(object sender, EventArgs e)
+        {
+            if(!_AllStudensHaveAttandanceStatus())
+            {
+                MessageBox.Show("Not every student was processed"); 
+            }
+            else
+            {
+               SqlConnector.AddAttendanceInfo(_CreateAttendanceInfoRows());    
+            }
         }
 
 
@@ -135,8 +147,8 @@ namespace AttendanceSystem
         {
             if (lessonAttendanceTable.Rows.Count > 0) lessonAttendanceTable.Clear(); 
             
-            Student[] students = SqlConnector.GetStudensByGroup(groupComboBox_tab2.Text);
-            foreach(Student student in students)
+            _students = SqlConnector.GetStudensByGroup(groupComboBox_tab2.Text);
+            foreach(Student student in _students)
             {
                 lessonAttendanceTable.Rows.Add(new object[] { student.FullName.Trim(), null }); 
             }
@@ -157,7 +169,7 @@ namespace AttendanceSystem
             lessonComboBox_tab2.DataSource = _existingLessons;
             lessonComboBox_tab2.DisplayMember = "Name";
         }
-        private void _InitAppearanceChoisesMenu()
+        private void _InitStudentAttandanceStatusMenu()
         {
             MenuItem menuAbsent = new MenuItem();
             MenuItem menuPresent = new MenuItem();
@@ -165,12 +177,50 @@ namespace AttendanceSystem
             menuAbsent.Text = "absent";
             menuPresent.Text = "present";
 
-            menuAbsent.Click += appearanceChoisesMenu_Clicked;
-            menuPresent.Click += appearanceChoisesMenu_Clicked;
+            menuAbsent.Click += studentAttendanceStatusMenuItem_Clicked;
+            menuPresent.Click += studentAttendanceStatusMenuItem_Clicked;
 
-            _appearanceChoisesMenu.MenuItems.Add(menuAbsent);
-            _appearanceChoisesMenu.MenuItems.Add(menuPresent); 
+            _studentAttendanceStatusMenu.MenuItems.Add(menuAbsent);
+            _studentAttendanceStatusMenu.MenuItems.Add(menuPresent); 
         }
 
+    //
+        /// <summary>
+        /// Checks column 'Attendance' in lessonAttendanceGridView  for presence   null values
+        /// </summary>
+        /// <returns>false if at least one null value is present</returns>
+        private bool _AllStudensHaveAttandanceStatus()
+        {
+            foreach(DataRow row in _lessonAttendanceTable.Rows)
+            {
+                if (row.Field<string>("Attendance") == null)  return false; 
+            }
+            return true; 
+        } 
+        /// <summary>
+        /// Collects data from lessonAttendanceTabPage and create attandance records
+        /// </summary>
+        /// <returns></returns>
+        private List<AttendanceInfo> _CreateAttendanceInfoRows()
+        {
+            List<AttendanceInfo> output= new List<AttendanceInfo>(_lessonAttendanceTable.Rows.Count);
+
+            int rowId = 0; 
+            foreach (DataRow row in _lessonAttendanceTable.Rows)
+            {
+                AttendanceInfo record = new AttendanceInfo(); 
+
+                record.Lesson = lessonComboBox_tab2.Text;
+                record.Status = row.Field<string>("Attendance");
+                record.Date = DateTime.Now.Date.ToString("yyyy/MM/dd");
+                record.StudentId = _students[rowId].Id;
+
+                ++rowId;
+
+                output.Add(record); 
+            }
+
+            return output; 
+        }
     }
 }

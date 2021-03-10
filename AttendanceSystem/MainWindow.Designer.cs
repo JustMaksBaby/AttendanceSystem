@@ -288,6 +288,7 @@
             this.saveButton_tab2.TabIndex = 10;
             this.saveButton_tab2.Text = "Save";
             this.saveButton_tab2.UseVisualStyleBackColor = true;
+            this.saveButton_tab2.Click += new System.EventHandler(this.saveButton_tab2_Click);
             // 
             // MainWindow
             // 

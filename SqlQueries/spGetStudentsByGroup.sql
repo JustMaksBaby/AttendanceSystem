@@ -6,7 +6,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 	
-	SELECT FirstName + ' ' + LastName + COALESCE(Patronymic, ' ') as FullName
+	SELECT Id, FirstName,LastName, COALESCE(Patronymic, ' '), StudentsCardId, GroupId 
 	FROM dbo.Students
 	WHERE GroupId  = @GroupName; 
 END

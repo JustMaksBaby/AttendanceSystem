@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\SqlConnector.cs" />
+    <Compile Include="Models\AttendanceInfo.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Lesson.cs" />
     <Compile Include="Models\LoggedUser.cs" />
