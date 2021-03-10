@@ -8,6 +8,7 @@ BEGIN
 	
 	SELECT Id, FirstName,LastName, COALESCE(Patronymic, ' '), StudentsCardId, GroupId 
 	FROM dbo.Students
-	WHERE GroupId  = @GroupName; 
+	WHERE GroupId  = @GroupName
+	ORDER BY FirstName;
 END
 GO

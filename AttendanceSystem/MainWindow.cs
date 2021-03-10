@@ -129,8 +129,11 @@ namespace AttendanceSystem
         private void _SetupLessonAttendanceDataGrid(DataTable lessonAttendanceTable)
         {
             lessonAttendanceGridView.AllowUserToAddRows = false;
-
+           
             lessonAttendanceGridView.DataSource = lessonAttendanceTable;
+
+            lessonAttendanceGridView.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable; 
+            lessonAttendanceGridView.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable; 
 
             DataGridViewColumn column = lessonAttendanceGridView.Columns[0]; 
 

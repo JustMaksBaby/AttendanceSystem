@@ -233,7 +233,11 @@ namespace AttendanceLibrary.DataAccess
             return output;  
         }
         
-    //
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="groupName"></param>
+    /// <returns>Returns stunets in alphabetic order by name</returns>
         public static Student[] GetStudensByGroup(string groupName)
         {
             Student[] students = null; 
