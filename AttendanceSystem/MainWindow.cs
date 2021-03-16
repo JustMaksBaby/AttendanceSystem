@@ -48,26 +48,25 @@ namespace AttendanceSystem
         }
         private void MainWindow_Load(object sender, EventArgs e)
         {           
+            LoginWindow loginWindow = new LoginWindow();
 
-            //LoginWindow loginWindow = new LoginWindow();
-
-            //if (loginWindow.ShowDialog() != DialogResult.OK)
-            //{
-            //    System.Windows.Forms.Application.Exit();
-            //}
-            //else
-            //{
-            //    _loggedTeacher = loginWindow.loggedTeacher; 
+            if (loginWindow.ShowDialog() != DialogResult.OK)
+            {
+                System.Windows.Forms.Application.Exit();
+            }
+            else
+            {
+                _loggedTeacher = loginWindow.loggedTeacher; 
 
 
-            //    if(_loggedTeacher.SystemStatus == "limited")
-            //    {
-            //        addTeacherLinkLabel.Hide();     
-            //        addStudentLinkLabel.Hide();     
-            //        addGroupLinkLabel.Hide();     
-            //        addLessonLinkLabel.Hide();     
-            //    }
-            //}    
+                if(_loggedTeacher.SystemStatus == "limited")
+                {
+                    addTeacherLinkLabel.Hide();     
+                    addStudentLinkLabel.Hide();     
+                    addGroupLinkLabel.Hide();     
+                    addLessonLinkLabel.Hide();     
+                }
+            }    
 
             tabControl.SelectedTab = attendanceTabPage;
         }

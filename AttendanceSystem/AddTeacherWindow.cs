@@ -86,12 +86,12 @@ namespace AttendanceSystem
         {
             if (password.Length < 8 || password.Length > 15)
             {
-                _fieldError = _fieldError??"Password has wrong length. It shoud be  8 <= password <= 15";
+                _fieldError = "Password has wrong length. It shoud be  8 <= password <= 15";
                 return false;
             }
             else if (password.Split(' ').Length > 1)
             {
-                _fieldError = _fieldError??"Password is separated by spaces"; 
+                _fieldError = "Password is separated by spaces"; 
                 return false; 
             } 
             else return true;
@@ -101,18 +101,18 @@ namespace AttendanceSystem
       
             if (login.Length < 4 || login.Length > 20)
             {
-                _fieldError = _fieldError??"Login has wrong length.It shoud be 4 <= name <= 20";
+                _fieldError = "Login has wrong length.It shoud be 4 <= name <= 20";
                 return false;
 
             }
             else if (login.Split(' ').Length > 1)
             {
-                _fieldError = _fieldError??"Login is separated by spaces"; 
+                _fieldError = "Login is separated by spaces"; 
                 return false;
             } 
             else if(SqlConnector.UserExists(login))
             {
-                _fieldError = _fieldError ?? "User with this login already exists";
+                _fieldError =  "User with this login already exists";
                 return false;
             }
             else return true;
@@ -126,7 +126,7 @@ namespace AttendanceSystem
         {
             if(SqlConnector.TeacherExists(firstName, lastName) && patronymic == "")
             {
-                _fieldError = _fieldError??"Teacher with these first and last name already exists.Please set patronymic";
+                _fieldError ="Teacher with these first and last name already exists.Please set patronymic";
                 return false;
             }
 

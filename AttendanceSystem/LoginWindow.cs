@@ -16,7 +16,7 @@ namespace AttendanceSystem
 {
     public partial class LoginWindow : Form
     {
-        private string _fieldError = "No description"; // tracks errors in teacher information fields
+        private string _fieldError = null; // tracks errors in teacher information fields
         public Teacher loggedTeacher = null; 
         public LoginWindow()
         {
@@ -40,7 +40,7 @@ namespace AttendanceSystem
             else
             {
                 MessageBox.Show(_fieldError,"Info");
-                _fieldError = "No description";  
+                _fieldError = null;  
             }
 
         }
@@ -69,7 +69,7 @@ namespace AttendanceSystem
             }
             else
             {
-                _fieldError = _fieldError??"The password is wrong";
+                _fieldError = "The password is wrong";
                 return false;
             }
 
@@ -82,7 +82,7 @@ namespace AttendanceSystem
             }
             else
             {
-                _fieldError = _fieldError??"There is no user with this login";
+                _fieldError = "There is no user with this login";
                 return false; 
             }
         }

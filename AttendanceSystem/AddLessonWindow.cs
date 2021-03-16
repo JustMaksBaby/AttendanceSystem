@@ -14,7 +14,7 @@ namespace AttendanceSystem
 {
     public partial class AddLessonWindow : Form
     {
-        private string _fieldError = "No description"; //tracks errors in fields
+        private string _fieldError = null; //tracks errors in fields
         
         public AddLessonWindow()
         {
@@ -34,7 +34,7 @@ namespace AttendanceSystem
             else
             {
                 MessageBox.Show(_fieldError, "Info");
-                _fieldError = "No description"; 
+                _fieldError = null; 
             }
                    
         }
