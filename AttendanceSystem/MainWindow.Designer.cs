@@ -96,7 +96,7 @@
             this.showInfoButton.TabIndex = 13;
             this.showInfoButton.Text = "Show info";
             this.showInfoButton.UseVisualStyleBackColor = true;
-            this.showInfoButton.Click += new System.EventHandler(this.button1_Click);
+            this.showInfoButton.Click += new System.EventHandler(this.showInfoButton_Click);
             // 
             // attendanceGridView
             // 

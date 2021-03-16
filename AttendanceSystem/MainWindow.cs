@@ -102,7 +102,7 @@ namespace AttendanceSystem
         }
         private void lessonAttendanceGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && e.ColumnIndex == 1)
+            if (e.Button == MouseButtons.Left && e.ColumnIndex == 1 && e.RowIndex != -1)
             {
                 _clickedCell.Column = e.ColumnIndex;
                 _clickedCell.Row = e.RowIndex;
@@ -126,9 +126,12 @@ namespace AttendanceSystem
                SqlConnector.AddAttendanceInfo(_CreateAttendanceInfoRows());    
             }
         }
+        private void showInfoButton_Click(object sender, EventArgs e)
+        {
+            _UpdateAttendanceDataTable(_allTimeAttendanceTable);
+        }
 
-
-    //
+        //
         private void _SetupLessonAttendanceDataTable(DataTable lessonAttendanceTable)
         {
             lessonAttendanceTable.Columns.Add("Students",typeof(string));
@@ -271,11 +274,7 @@ namespace AttendanceSystem
             return output; 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _UpdateAttendanceDataTable(_allTimeAttendanceTable);
-           
-        }
+       
 
       
     }
