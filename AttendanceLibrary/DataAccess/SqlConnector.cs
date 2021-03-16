@@ -193,7 +193,7 @@ namespace AttendanceLibrary.DataAccess
                     DynamicParameters p = new DynamicParameters();
                     p.Add("@Login", login);
                     
-                    //TODO test if there is no teacher
+                    
                     output = connection.Query<Teacher>("dbo.spGetTeacherByLogin", p, commandType: CommandType.StoredProcedure).FirstOrDefault(); 
                 }
             }
@@ -231,6 +231,17 @@ namespace AttendanceLibrary.DataAccess
             }
 
             return output;  
+        }
+        public static AttendanceInfo[] GetStudentsAttendance(string group,string lesson, string date)
+        {
+            AttendanceInfo[] output = null;
+            using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            {
+                var parameters = new { GroupName = group, LessonName = lesson, Date = date };
+                output = connection.Query<AttendanceInfo>("spGetStudentsAttendanceStatusBy_Group_Lesson_Date", parameters, commandType: CommandType.StoredProcedure).ToArray(); 
+
+            }
+            return output; 
         }
         
     /// <summary>

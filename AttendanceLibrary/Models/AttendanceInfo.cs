@@ -13,5 +13,7 @@ namespace AttendanceLibrary.Models
         public int StudentId { get; set; }
         public string Lesson { get; set; }
         public string Status { get; set; }
+
+        public string StudentFullName { get; set; }
     }
 }

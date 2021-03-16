@@ -30,24 +30,25 @@
         {
             this.tabControl = new MetroFramework.Controls.MetroTabControl();
             this.attendanceTabPage = new MetroFramework.Controls.MetroTabPage();
+            this.showInfoButton = new System.Windows.Forms.Button();
+            this.attendanceGridView = new System.Windows.Forms.DataGridView();
             this.chooseLessonLabel = new System.Windows.Forms.Label();
             this.lessonComboBox_tab1 = new System.Windows.Forms.ComboBox();
             this.chooseDataLabel = new System.Windows.Forms.Label();
             this.chooseGroupLabel = new System.Windows.Forms.Label();
-            this.attendanceGridView = new System.Windows.Forms.DataGridView();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.groupComboBox_tab1 = new System.Windows.Forms.ComboBox();
             this.lessonAttendanceTabPage = new MetroFramework.Controls.MetroTabPage();
+            this.lessonAttendanceGridView = new System.Windows.Forms.DataGridView();
+            this.saveButton_tab2 = new System.Windows.Forms.Button();
             this.lessonLabel = new System.Windows.Forms.Label();
             this.lessonComboBox_tab2 = new System.Windows.Forms.ComboBox();
             this.groupsLabel = new System.Windows.Forms.Label();
-            this.lessonAttendanceGridView = new System.Windows.Forms.DataGridView();
             this.groupComboBox_tab2 = new System.Windows.Forms.ComboBox();
             this.addTeacherLinkLabel = new System.Windows.Forms.LinkLabel();
             this.addStudentLinkLabel = new System.Windows.Forms.LinkLabel();
             this.addGroupLinkLabel = new System.Windows.Forms.LinkLabel();
             this.addLessonLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.saveButton_tab2 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.attendanceTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.attendanceGridView)).BeginInit();
@@ -64,20 +65,21 @@
             this.tabControl.HotTrack = true;
             this.tabControl.Location = new System.Drawing.Point(20, 60);
             this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 1;
+            this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(941, 523);
             this.tabControl.TabIndex = 0;
             // 
             // attendanceTabPage
             // 
+            this.attendanceTabPage.Controls.Add(this.showInfoButton);
+            this.attendanceTabPage.Controls.Add(this.attendanceGridView);
             this.attendanceTabPage.Controls.Add(this.chooseLessonLabel);
             this.attendanceTabPage.Controls.Add(this.lessonComboBox_tab1);
             this.attendanceTabPage.Controls.Add(this.chooseDataLabel);
             this.attendanceTabPage.Controls.Add(this.chooseGroupLabel);
-            this.attendanceTabPage.Controls.Add(this.attendanceGridView);
             this.attendanceTabPage.Controls.Add(this.datePicker);
             this.attendanceTabPage.Controls.Add(this.groupComboBox_tab1);
-            this.attendanceTabPage.Font = new System.Drawing.Font("Microsoft JhengHei", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attendanceTabPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.attendanceTabPage.HorizontalScrollbarBarColor = true;
             this.attendanceTabPage.Location = new System.Drawing.Point(4, 39);
             this.attendanceTabPage.Name = "attendanceTabPage";
@@ -86,12 +88,35 @@
             this.attendanceTabPage.Text = "Attendance ";
             this.attendanceTabPage.VerticalScrollbarBarColor = true;
             // 
+            // showInfoButton
+            // 
+            this.showInfoButton.Location = new System.Drawing.Point(759, 34);
+            this.showInfoButton.Name = "showInfoButton";
+            this.showInfoButton.Size = new System.Drawing.Size(129, 28);
+            this.showInfoButton.TabIndex = 13;
+            this.showInfoButton.Text = "Show info";
+            this.showInfoButton.UseVisualStyleBackColor = true;
+            this.showInfoButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // attendanceGridView
+            // 
+            this.attendanceGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.attendanceGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.attendanceGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.attendanceGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.attendanceGridView.Location = new System.Drawing.Point(0, 84);
+            this.attendanceGridView.Name = "attendanceGridView";
+            this.attendanceGridView.RowHeadersWidth = 51;
+            this.attendanceGridView.RowTemplate.Height = 24;
+            this.attendanceGridView.Size = new System.Drawing.Size(933, 396);
+            this.attendanceGridView.TabIndex = 12;
+            // 
             // chooseLessonLabel
             // 
             this.chooseLessonLabel.AutoSize = true;
             this.chooseLessonLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.chooseLessonLabel.Font = new System.Drawing.Font("Microsoft JhengHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseLessonLabel.Location = new System.Drawing.Point(196, 18);
+            this.chooseLessonLabel.Location = new System.Drawing.Point(196, 8);
             this.chooseLessonLabel.Name = "chooseLessonLabel";
             this.chooseLessonLabel.Size = new System.Drawing.Size(71, 22);
             this.chooseLessonLabel.TabIndex = 11;
@@ -102,7 +127,7 @@
             this.lessonComboBox_tab1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lessonComboBox_tab1.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lessonComboBox_tab1.FormattingEnabled = true;
-            this.lessonComboBox_tab1.Location = new System.Drawing.Point(196, 43);
+            this.lessonComboBox_tab1.Location = new System.Drawing.Point(196, 33);
             this.lessonComboBox_tab1.Name = "lessonComboBox_tab1";
             this.lessonComboBox_tab1.Size = new System.Drawing.Size(199, 28);
             this.lessonComboBox_tab1.TabIndex = 10;
@@ -112,7 +137,7 @@
             this.chooseDataLabel.AutoSize = true;
             this.chooseDataLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.chooseDataLabel.Font = new System.Drawing.Font("Microsoft JhengHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseDataLabel.Location = new System.Drawing.Point(404, 19);
+            this.chooseDataLabel.Location = new System.Drawing.Point(404, 9);
             this.chooseDataLabel.Name = "chooseDataLabel";
             this.chooseDataLabel.Size = new System.Drawing.Size(54, 22);
             this.chooseDataLabel.TabIndex = 6;
@@ -123,29 +148,16 @@
             this.chooseGroupLabel.AutoSize = true;
             this.chooseGroupLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.chooseGroupLabel.Font = new System.Drawing.Font("Microsoft JhengHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseGroupLabel.Location = new System.Drawing.Point(3, 19);
+            this.chooseGroupLabel.Location = new System.Drawing.Point(3, 9);
             this.chooseGroupLabel.Name = "chooseGroupLabel";
             this.chooseGroupLabel.Size = new System.Drawing.Size(67, 22);
             this.chooseGroupLabel.TabIndex = 5;
             this.chooseGroupLabel.Text = "Group:";
             // 
-            // attendanceGridView
-            // 
-            this.attendanceGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.attendanceGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.attendanceGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.attendanceGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.attendanceGridView.Location = new System.Drawing.Point(0, 81);
-            this.attendanceGridView.Name = "attendanceGridView";
-            this.attendanceGridView.RowHeadersWidth = 51;
-            this.attendanceGridView.RowTemplate.Height = 24;
-            this.attendanceGridView.Size = new System.Drawing.Size(933, 399);
-            this.attendanceGridView.TabIndex = 4;
-            // 
             // datePicker
             // 
             this.datePicker.Font = new System.Drawing.Font("Microsoft JhengHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePicker.Location = new System.Drawing.Point(408, 44);
+            this.datePicker.Location = new System.Drawing.Point(408, 34);
             this.datePicker.Name = "datePicker";
             this.datePicker.Size = new System.Drawing.Size(312, 27);
             this.datePicker.TabIndex = 3;
@@ -155,18 +167,18 @@
             this.groupComboBox_tab1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.groupComboBox_tab1.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupComboBox_tab1.FormattingEnabled = true;
-            this.groupComboBox_tab1.Location = new System.Drawing.Point(0, 43);
+            this.groupComboBox_tab1.Location = new System.Drawing.Point(0, 33);
             this.groupComboBox_tab1.Name = "groupComboBox_tab1";
             this.groupComboBox_tab1.Size = new System.Drawing.Size(191, 28);
             this.groupComboBox_tab1.TabIndex = 2;
             // 
             // lessonAttendanceTabPage
             // 
+            this.lessonAttendanceTabPage.Controls.Add(this.lessonAttendanceGridView);
             this.lessonAttendanceTabPage.Controls.Add(this.saveButton_tab2);
             this.lessonAttendanceTabPage.Controls.Add(this.lessonLabel);
             this.lessonAttendanceTabPage.Controls.Add(this.lessonComboBox_tab2);
             this.lessonAttendanceTabPage.Controls.Add(this.groupsLabel);
-            this.lessonAttendanceTabPage.Controls.Add(this.lessonAttendanceGridView);
             this.lessonAttendanceTabPage.Controls.Add(this.groupComboBox_tab2);
             this.lessonAttendanceTabPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lessonAttendanceTabPage.HorizontalScrollbarBarColor = true;
@@ -177,6 +189,30 @@
             this.lessonAttendanceTabPage.Text = "  Lesson Attendance";
             this.lessonAttendanceTabPage.VerticalScrollbarBarColor = true;
             this.lessonAttendanceTabPage.VerticalScrollbarSize = 12;
+            // 
+            // lessonAttendanceGridView
+            // 
+            this.lessonAttendanceGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lessonAttendanceGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lessonAttendanceGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.lessonAttendanceGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lessonAttendanceGridView.Location = new System.Drawing.Point(0, 89);
+            this.lessonAttendanceGridView.Name = "lessonAttendanceGridView";
+            this.lessonAttendanceGridView.RowHeadersWidth = 51;
+            this.lessonAttendanceGridView.RowTemplate.Height = 24;
+            this.lessonAttendanceGridView.Size = new System.Drawing.Size(933, 391);
+            this.lessonAttendanceGridView.TabIndex = 11;
+            this.lessonAttendanceGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.lessonAttendanceGridView_CellMouseClick);
+            // 
+            // saveButton_tab2
+            // 
+            this.saveButton_tab2.Location = new System.Drawing.Point(776, 32);
+            this.saveButton_tab2.Name = "saveButton_tab2";
+            this.saveButton_tab2.Size = new System.Drawing.Size(154, 30);
+            this.saveButton_tab2.TabIndex = 10;
+            this.saveButton_tab2.Text = "Save";
+            this.saveButton_tab2.UseVisualStyleBackColor = true;
+            this.saveButton_tab2.Click += new System.EventHandler(this.saveButton_tab2_Click);
             // 
             // lessonLabel
             // 
@@ -209,20 +245,6 @@
             this.groupsLabel.Size = new System.Drawing.Size(67, 22);
             this.groupsLabel.TabIndex = 7;
             this.groupsLabel.Text = "Group:";
-            // 
-            // lessonAttendanceGridView
-            // 
-            this.lessonAttendanceGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lessonAttendanceGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lessonAttendanceGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.lessonAttendanceGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lessonAttendanceGridView.Location = new System.Drawing.Point(0, 67);
-            this.lessonAttendanceGridView.Name = "lessonAttendanceGridView";
-            this.lessonAttendanceGridView.RowHeadersWidth = 51;
-            this.lessonAttendanceGridView.RowTemplate.Height = 24;
-            this.lessonAttendanceGridView.Size = new System.Drawing.Size(933, 413);
-            this.lessonAttendanceGridView.TabIndex = 6;
-            this.lessonAttendanceGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.lessonAttendanceGridView_CellMouseClick);
             // 
             // groupComboBox_tab2
             // 
@@ -280,16 +302,6 @@
             this.addLessonLinkLabel.Text = "Add lesson";
             this.addLessonLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.addLessonLinkLabel_LinkClicked);
             // 
-            // saveButton_tab2
-            // 
-            this.saveButton_tab2.Location = new System.Drawing.Point(776, 32);
-            this.saveButton_tab2.Name = "saveButton_tab2";
-            this.saveButton_tab2.Size = new System.Drawing.Size(154, 30);
-            this.saveButton_tab2.TabIndex = 10;
-            this.saveButton_tab2.Text = "Save";
-            this.saveButton_tab2.UseVisualStyleBackColor = true;
-            this.saveButton_tab2.Click += new System.EventHandler(this.saveButton_tab2_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -321,14 +333,12 @@
         private MetroFramework.Controls.MetroTabPage attendanceTabPage;
         private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.ComboBox groupComboBox_tab1;
-        private System.Windows.Forms.DataGridView attendanceGridView;
         private System.Windows.Forms.Label chooseDataLabel;
         private System.Windows.Forms.Label chooseGroupLabel;
         private MetroFramework.Controls.MetroTabPage lessonAttendanceTabPage;
         private System.Windows.Forms.Label lessonLabel;
         private System.Windows.Forms.ComboBox lessonComboBox_tab2;
         private System.Windows.Forms.Label groupsLabel;
-        private System.Windows.Forms.DataGridView lessonAttendanceGridView;
         private System.Windows.Forms.ComboBox groupComboBox_tab2;
         private System.Windows.Forms.LinkLabel addTeacherLinkLabel;
         private System.Windows.Forms.LinkLabel addStudentLinkLabel;
@@ -337,6 +347,9 @@
         private System.Windows.Forms.Label chooseLessonLabel;
         private System.Windows.Forms.ComboBox lessonComboBox_tab1;
         private System.Windows.Forms.Button saveButton_tab2;
+        private System.Windows.Forms.DataGridView attendanceGridView;
+        private System.Windows.Forms.DataGridView lessonAttendanceGridView;
+        private System.Windows.Forms.Button showInfoButton;
     }
 }
 
