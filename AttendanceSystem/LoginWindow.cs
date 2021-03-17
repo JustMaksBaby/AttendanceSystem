@@ -17,10 +17,15 @@ namespace AttendanceSystem
     public partial class LoginWindow : Form
     {
         private string _fieldError = null; // tracks errors in teacher information fields
-        public Teacher loggedTeacher = null; 
-        public LoginWindow()
+        private SqlConnector _connector; 
+
+        public Teacher loggedTeacher = null;  
+
+        public LoginWindow(SqlConnector connector)
         {
             InitializeComponent();
+
+            _connector = connector; 
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -31,7 +36,7 @@ namespace AttendanceSystem
 
             if(_ValidateLoginData(testedUser))
             {
-                loggedTeacher = SqlConnector.GetTeacherByLogin(testedUser.Login);   
+                loggedTeacher = _connector.GetTeacherByLogin(testedUser.Login);   
 
                 this.DialogResult = DialogResult.OK; 
                 
@@ -50,7 +55,7 @@ namespace AttendanceSystem
         {
             if(_IsLoginValid(testedUser))
             {
-                ILoginInfo userFromDb = SqlConnector.GetLoginInfo(testedUser.Login); 
+                ILoginInfo userFromDb = _connector.GetLoginInfo(testedUser.Login); 
 
                 if(_IsPasswordValid(userFromDb, testedUser))
                 {
@@ -76,7 +81,7 @@ namespace AttendanceSystem
         }
         private bool _IsLoginValid(ILoginInfo testedUser)
         {
-            if (SqlConnector.UserExists(testedUser.Login))
+            if (_connector.UserExists(testedUser.Login))
             {
                 return true;
             }

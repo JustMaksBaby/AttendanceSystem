@@ -15,30 +15,33 @@ namespace AttendanceLibrary.DataAccess
 {
     public class SqlConnector
     {
-        private static readonly string _db = "AttandanceDb"; //database  connect to
-        private static readonly string _dbConnectionStr = ConfigurationManager.ConnectionStrings[_db].ConnectionString;
-
-
-        public static bool UserExists(string login)
+        private  static readonly string _db = "AttandanceDb"; //database  connect to
+        private  readonly string _dbConnectionStr =  ConfigurationManager.ConnectionStrings[_db].ConnectionString;
+        private  ISqlConnector _connector; 
+        
+        public SqlConnector(ISqlConnector connector)
         {
-            int usersInDb = 0; 
+            _connector = connector;
+        }
+        public bool UserExists(string login)
+        {
+            int usersInDb = 0;
 
-            using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            using (IDbConnection  connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@Login", login);
 
                 usersInDb = connection.ExecuteScalar<int>("dbo.spCheckUserExist", p, commandType: CommandType.StoredProcedure);
-
             }
             
             return usersInDb > 0;
         }
-        public static bool TeacherExists(string firstName, string lastName)
+        public bool TeacherExists(string firstName, string lastName)
         {
-            int teachersInDb = 0;  
+            int teachersInDb = 0;
 
-            using(SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@FirstName", firstName);
@@ -48,10 +51,10 @@ namespace AttendanceLibrary.DataAccess
             }
             return teachersInDb > 0; 
         }
-        public static bool GroupExists(string groupName)
+        public bool GroupExists(string groupName)
         {
-            int groupsInDb = 0; 
-            using(SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            int groupsInDb = 0;
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@Name", groupName);
@@ -61,10 +64,10 @@ namespace AttendanceLibrary.DataAccess
 
             return groupsInDb > 0;
         }
-        public static bool LessonExists(string lessonName)
+        public bool LessonExists(string lessonName)
         {
-            int lessonsInDb = 0; 
-            using(SqlConnection connection = new SqlConnection (_dbConnectionStr))
+            int lessonsInDb = 0;
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@Name", lessonName);
@@ -75,10 +78,9 @@ namespace AttendanceLibrary.DataAccess
             return lessonsInDb > 0; 
         }
     //
-        public static void AddUser(ILoginInfo  loginInfo, Teacher teacher)
+        public void AddUser(ILoginInfo  loginInfo, Teacher teacher)
         {
-
-            using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
 
@@ -89,18 +91,17 @@ namespace AttendanceLibrary.DataAccess
 
                 connection.Execute("dbo.spAddLoginInfo", p, commandType: CommandType.StoredProcedure);
             }
-
         } 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="teacher"></param>
         /// <returns>returns id for added row</returns>
-        public static int AddTeacher(Teacher teacher)
+        public int AddTeacher(Teacher teacher)
         {
-            int id = -1;  
+            int id = -1;
 
-            using(SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
@@ -116,9 +117,9 @@ namespace AttendanceLibrary.DataAccess
 
             return id;
         }
-        public static void  AddGroup(Group group)
+        public void  AddGroup(Group group)
         {
-            using(SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@Name", group.Name);
@@ -127,9 +128,9 @@ namespace AttendanceLibrary.DataAccess
                 connection.Execute("dbo.spAddGroup", p, commandType: CommandType.StoredProcedure);
             }
         }
-        public static void AddStudent(Student student)
+        public void AddStudent(Student student)
         {
-            using (SqlConnection connection = new SqlConnection(_dbConnectionStr) )
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@FirstName", student.FirstName); 
@@ -141,9 +142,9 @@ namespace AttendanceLibrary.DataAccess
                 connection.Execute("dbo.spAddStudent", p, commandType: CommandType.StoredProcedure); 
             }
         }
-        public static void AddLesson(Lesson lesson)
+        public void AddLesson(Lesson lesson)
         {
-            using(SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@Name", lesson.Name);
@@ -151,27 +152,27 @@ namespace AttendanceLibrary.DataAccess
                 connection.Execute("dbo.spAddLesson", p, commandType: CommandType.StoredProcedure); 
             }
         }
-        public static void AddAttendanceInfo(List<AttendanceInfo>  records)
+        public void AddAttendanceInfo(List<AttendanceInfo>  records)
         {
-            using(SqlConnection connector = new SqlConnection(_dbConnectionStr))
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 foreach(AttendanceInfo record in records)
                 {
                     var parameters = new { Date = record.Date, StudentId = record.StudentId, 
                                          Lesson = record.Lesson, Status = record.Status }; 
-                    connector.Execute("spAddAttendanceInfo", parameters, commandType: CommandType.StoredProcedure); 
+                    connection.Execute("spAddAttendanceInfo", parameters, commandType: CommandType.StoredProcedure); 
                 }
             }
         }
 
     //
-        public static LoggedUser GetLoginInfo(string login)
+        public LoggedUser GetLoginInfo(string login)
         {
             LoggedUser output = null; 
 
             if (UserExists(login))
             {
-                using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
+                using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
                 {
                     DynamicParameters p = new DynamicParameters();
                     p.Add("@Login",  login);
@@ -182,13 +183,13 @@ namespace AttendanceLibrary.DataAccess
 
             return output;
         }
-        public static Teacher GetTeacherByLogin(string login)
+        public Teacher GetTeacherByLogin(string login)
         {
             Teacher output = null;
           
             if (UserExists(login))
             {
-                using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
+                using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
                 {
                     DynamicParameters p = new DynamicParameters();
                     p.Add("@Login", login);
@@ -200,42 +201,42 @@ namespace AttendanceLibrary.DataAccess
 
             return output; 
         }
-        public static Teacher[] GetAllTeachers()
+        public Teacher[] GetAllTeachers()
         {
             Teacher[] teachers = null;
-            using (SqlConnection connection = new SqlConnection(_dbConnectionStr) )
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 teachers = connection.Query<Teacher>("dbo.spGetAllTeachers", commandType: CommandType.StoredProcedure).ToArray(); 
             }
 
             return teachers; 
         }
-        public static Group[] GetAllGroups()
+        public Group[] GetAllGroups()
         {
-            Group[] groups = null; 
+            Group[] groups = null;
 
-            using(SqlConnection connection = new SqlConnection(_dbConnectionStr) )
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 groups = connection.Query<Group>("dbo.spGetAllGroups", commandType: CommandType.StoredProcedure).ToArray();     
             }
 
             return groups; 
         }
-        public static Lesson[] GetAllLessons()
+        public Lesson[] GetAllLessons()
         {
-            Lesson[] output = null; 
+            Lesson[] output = null;
 
-            using(SqlConnection connection = new SqlConnection(_dbConnectionStr) )
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 output = connection.Query<Lesson>("dbo.spGetAllLessons", commandType: CommandType.StoredProcedure).ToArray(); 
             }
 
             return output;  
         }
-        public static AttendanceInfo[] GetStudentsAttendance(string group,string lesson, string date)
+        public AttendanceInfo[] GetStudentsAttendance(string group,string lesson, string date)
         {
             AttendanceInfo[] output = null;
-            using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 var parameters = new { GroupName = group, LessonName = lesson, Date = date };
                 output = connection.Query<AttendanceInfo>("spGetStudentsAttendanceStatusBy_Group_Lesson_Date", parameters, commandType: CommandType.StoredProcedure).ToArray(); 
@@ -249,11 +250,11 @@ namespace AttendanceLibrary.DataAccess
     /// </summary>
     /// <param name="groupName"></param>
     /// <returns>Returns stunets in alphabetic order by name</returns>
-        public static Student[] GetStudensByGroup(string groupName)
+        public Student[] GetStudensByGroup(string groupName)
         {
             Student[] students = null; 
 
-            using (SqlConnection connection = new SqlConnection(_dbConnectionStr))
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@GroupName", groupName); 

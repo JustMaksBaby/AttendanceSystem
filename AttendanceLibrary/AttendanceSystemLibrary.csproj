@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\ISqlConnector.cs" />
     <Compile Include="DataAccess\SqlConnector.cs" />
     <Compile Include="Models\AttendanceInfo.cs" />
     <Compile Include="Models\Group.cs" />

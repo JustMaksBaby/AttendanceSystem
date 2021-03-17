@@ -16,11 +16,13 @@ namespace AttendanceSystem
     public partial class AddTeacherWindow : Form
     {
         private string _fieldError = null; // tracks errors in name and password fields
+        private SqlConnector _connector;
 
-
-        public AddTeacherWindow()
+        public AddTeacherWindow(SqlConnector connector)
         {
             InitializeComponent();
+
+            _connector = connector; 
 
             statusesComboBox.Items.Add("admin");
             statusesComboBox.Items.Add("limited");
@@ -39,7 +41,7 @@ namespace AttendanceSystem
             if(_ValidateLoginData(loginInfo)  && _ValidateTeacherData(teacher))
             {
                 Password.CreateHashedPassword(loginInfo);
-                SqlConnector.AddUser(loginInfo, teacher);
+                _connector.AddUser(loginInfo, teacher);
 
                 firstNameTextBox.Text = "";
                 lastNameTextBox.Text = "";
@@ -110,7 +112,7 @@ namespace AttendanceSystem
                 _fieldError = "Login is separated by spaces"; 
                 return false;
             } 
-            else if(SqlConnector.UserExists(login))
+            else if(_connector.UserExists(login))
             {
                 _fieldError =  "User with this login already exists";
                 return false;
@@ -124,7 +126,7 @@ namespace AttendanceSystem
         }
         private bool _IsFullNameValid(string firstName, string lastName, string patronymic )
         {
-            if(SqlConnector.TeacherExists(firstName, lastName) && patronymic == "")
+            if(_connector.TeacherExists(firstName, lastName) && patronymic == "")
             {
                 _fieldError ="Teacher with these first and last name already exists.Please set patronymic";
                 return false;

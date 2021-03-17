@@ -16,21 +16,27 @@ namespace AttendanceSystem
     {
         private Teacher _loggedTeacher = null; // teached logged into the system
 
-        private Group[]  _existingGroups =  SqlConnector.GetAllGroups(); // all currently existing groups
-        private Lesson[] _existingLessons = SqlConnector.GetAllLessons(); // // all currently existing lessons
+        private Group[]  _existingGroups;// all currently existing groups
+        private Lesson[] _existingLessons; // // all currently existing lessons
 
         private DataTable _lessonAttendanceTable = new DataTable(); // table for lesson`s attandance
         private DataTable _allTimeAttendanceTable = new DataTable(); //table for attandance for all lessons
 
         private ContextMenu _studentAttendanceStatusMenu = new ContextMenu(); // menu with choises for a student`s attendance
-        private CellPosition _clickedCell = new CellPosition(); // a cell which mouse was pressed in
+        private CellPosition _clickedCell = new CellPosition(); // a cell where mouse was pressed in
 
-        Student[] _students = null; // array of students currently shown in lessonAttendanceGridView
+        private Student[] _students = null; // array of students currently shown in lessonAttendanceGridView
 
-    //
+        private SqlConnector _connector = new SqlConnector(new SqlServerConnector());
+
+        //
         public MainWindow()
         {
             InitializeComponent();
+
+            //
+            _existingGroups = _connector.GetAllGroups();
+            _existingLessons = _connector.GetAllLessons();
 
             //
             _SetupLessonAttendanceDataTable(_lessonAttendanceTable);
@@ -48,7 +54,7 @@ namespace AttendanceSystem
         }
         private void MainWindow_Load(object sender, EventArgs e)
         {           
-            LoginWindow loginWindow = new LoginWindow();
+            LoginWindow loginWindow = new LoginWindow(_connector);
 
             if (loginWindow.ShowDialog() != DialogResult.OK)
             {
@@ -72,26 +78,26 @@ namespace AttendanceSystem
         }
         private void addTeacherLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddTeacherWindow addTeacherWindow = new AddTeacherWindow();
+            AddTeacherWindow addTeacherWindow = new AddTeacherWindow(_connector);
             addTeacherWindow.ShowDialog();
             addTeacherWindow.Dispose();
         }
         private void addStudentLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddStudentWindow studentWindow = new AddStudentWindow();
+            AddStudentWindow studentWindow = new AddStudentWindow(_connector);
             studentWindow.ShowDialog();
             studentWindow.Dispose(); 
         }
         private void addGroupLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddGroupWindow groupWindow = new AddGroupWindow();
+            AddGroupWindow groupWindow = new AddGroupWindow(_connector);
             groupWindow.ShowDialog();
             groupWindow.Dispose();
 
         }
         private void addLessonLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddLessonWindow lessonWindow = new AddLessonWindow();
+            AddLessonWindow lessonWindow = new AddLessonWindow(_connector);
             lessonWindow.ShowDialog();
             lessonWindow.Dispose(); 
         }
@@ -122,7 +128,7 @@ namespace AttendanceSystem
             }
             else
             {
-               SqlConnector.AddAttendanceInfo(_CreateAttendanceInfoRows());    
+               _connector.AddAttendanceInfo(_CreateAttendanceInfoRows());    
             }
         }
         private void showInfoButton_Click(object sender, EventArgs e)
@@ -186,7 +192,7 @@ namespace AttendanceSystem
             if (lessonAttendanceTable.Rows.Count > 0) lessonAttendanceTable.Clear();
 
             Group selectedGroup = (Group)groupComboBox_tab2.SelectedItem; 
-            _students = SqlConnector.GetStudensByGroup(selectedGroup.Name);
+            _students = _connector.GetStudensByGroup(selectedGroup.Name);
 
             foreach(Student student in _students)
             {
@@ -197,7 +203,7 @@ namespace AttendanceSystem
         {
             if (attendanceTable.Rows.Count > 0) attendanceTable.Clear();
 
-            AttendanceInfo[] records = SqlConnector.GetStudentsAttendance(groupComboBox_tab1.Text, lessonComboBox_tab1.Text, datePicker.Value.ToString("yyyy/MM/dd"));
+            AttendanceInfo[] records = _connector.GetStudentsAttendance(groupComboBox_tab1.Text, lessonComboBox_tab1.Text, datePicker.Value.ToString("yyyy/MM/dd"));
             foreach (AttendanceInfo record in records)
             {
                 attendanceTable.Rows.Add(new object[] { record.StudentFullName, record.Status }); 

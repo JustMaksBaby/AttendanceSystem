@@ -15,19 +15,23 @@ namespace AttendanceSystem
     public partial class AddStudentWindow : Form
     {
         private string _fieldError = null; //tracks errors in fields
-        private Group[] groupsList; 
-        public AddStudentWindow()
+        private Group[] _groupsList;
+        private SqlConnector _connector; 
+        public AddStudentWindow(SqlConnector connector)
         {
             InitializeComponent();
-            groupsList = SqlConnector.GetAllGroups();
-            if (groupsList.Length == 0)
+
+            _connector = connector; 
+
+            _groupsList = _connector.GetAllGroups();
+            if (_groupsList.Length == 0)
             {
                 groupsComboBox.Items.Add("No groups"); 
                 groupsComboBox.Text = "No groups";  
             }
             else
             {
-                groupsComboBox.DataSource = groupsList;
+                groupsComboBox.DataSource = _groupsList;
                 groupsComboBox.DisplayMember = "Name";
             } 
         }
@@ -38,7 +42,7 @@ namespace AttendanceSystem
 
             if(_ValildateStudentData(student))
             {
-                SqlConnector.AddStudent(student);
+                _connector.AddStudent(student);
                 studentFirstNameTextBox.Text = ""; 
                 studentLastNameTextBox.Text = ""; 
                 studentPatronymicTextBox.Text = ""; 

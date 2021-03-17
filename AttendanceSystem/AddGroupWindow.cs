@@ -15,13 +15,16 @@ namespace AttendanceSystem
     public partial class AddGroupWindow : Form
     {
         private string _fieldError = null; //tracks errors in fields
-        private Teacher[] teachers; 
-        public AddGroupWindow()
+        private Teacher[] _teachers;
+        SqlConnector _connector; 
+        public AddGroupWindow(SqlConnector connector)
         {
             InitializeComponent();
-            teachers = SqlConnector.GetAllTeachers();
+            _connector = connector; 
 
-            curatorsComboBox.DataSource = teachers;
+            _teachers = _connector.GetAllTeachers();
+
+            curatorsComboBox.DataSource = _teachers;
             curatorsComboBox.DisplayMember = "FullName"; 
         }
     //
@@ -32,7 +35,7 @@ namespace AttendanceSystem
 
             if(_ValidateGroupData(group))
             {
-                SqlConnector.AddGroup(group);
+                _connector.AddGroup(group);
                 groupNameTextBox.Text = ""; 
             }
             else
@@ -56,7 +59,7 @@ namespace AttendanceSystem
         }
         private bool _IsGroupNameValid(string name)
         {
-            if (!SqlConnector.GroupExists(name) && name.Length >= 4)
+            if (!_connector.GroupExists(name) && name.Length >= 4)
             {
                 return true; 
             }

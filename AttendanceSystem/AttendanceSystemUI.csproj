@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerConnector.cs" />
     <EmbeddedResource Include="AddGroupWindow.resx">
       <DependentUpon>AddGroupWindow.cs</DependentUpon>
     </EmbeddedResource>

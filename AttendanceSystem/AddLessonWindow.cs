@@ -15,10 +15,11 @@ namespace AttendanceSystem
     public partial class AddLessonWindow : Form
     {
         private string _fieldError = null; //tracks errors in fields
-        
-        public AddLessonWindow()
+        private SqlConnector _connector; 
+        public AddLessonWindow(SqlConnector connector )
         {
             InitializeComponent();
+            _connector = connector; 
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -28,7 +29,7 @@ namespace AttendanceSystem
 
             if(_ValidateLessonData(lesson))
             {
-                SqlConnector.AddLesson(lesson);
+                _connector.AddLesson(lesson);
                 lessonNameTextBox.Text = ""; 
             }
             else
@@ -50,7 +51,7 @@ namespace AttendanceSystem
         }
         private bool _IsNameValid(string lessonName)
         {
-            if(SqlConnector.LessonExists(lessonName))
+            if(_connector.LessonExists(lessonName))
             {
                 _fieldError = "Lesson with this name alrady exists";  
                 return false; 
