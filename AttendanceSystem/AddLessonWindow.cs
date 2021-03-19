@@ -29,6 +29,7 @@ namespace AttendanceSystem
 
             if(_ValidateLessonData(lesson))
             {
+
                 _connector.AddLesson(lesson);
                 lessonNameTextBox.Text = ""; 
             }
@@ -36,8 +37,7 @@ namespace AttendanceSystem
             {
                 MessageBox.Show(_fieldError, "Info");
                 _fieldError = null; 
-            }
-                   
+            } 
         }
 
     //

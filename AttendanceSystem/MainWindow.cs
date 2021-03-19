@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,22 +28,38 @@ namespace AttendanceSystem
 
         private Student[] _students = null; // array of students currently shown in lessonAttendanceGridView
 
-        private SqlConnector _connector = new SqlConnector(new SqlServerConnector());
+        private SqlConnector _SqlServerConnector = new SqlConnector(new SqlServerConnector());
 
         //
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+        }
+        private void MainWindow_Load(object sender, EventArgs e)
+        { 
+            //check connection with DB
+            (bool, Exception) connectionResponse = _SqlServerConnector.TestConnection();
+            if (connectionResponse.Item1 == false)
+            {
+                MessageBox.Show("There is problem with a DB connection. Please check 'log.txt' file");
+
+                File.WriteAllLines("log.txt", 
+                                    new string[] { DateTime.Now.ToString(), 
+                                                   connectionResponse.Item2.Message});
+
+                System.Windows.Forms.Application.Exit();
+                return;
+            }
 
             //
-            _existingGroups = _connector.GetAllGroups();
-            _existingLessons = _connector.GetAllLessons();
+            _existingGroups = _SqlServerConnector.GetAllGroups();
+            _existingLessons = _SqlServerConnector.GetAllLessons();
 
             //
             _SetupLessonAttendanceDataTable(_lessonAttendanceTable);
             _SetupLessonAttendanceDataGrid(_lessonAttendanceTable);
 
-            _SetupAttendanceDataTable(_allTimeAttendanceTable);  
+            _SetupAttendanceDataTable(_allTimeAttendanceTable);
             _SetupAttendanceDataGrid(_allTimeAttendanceTable);
 
             //
@@ -50,15 +67,15 @@ namespace AttendanceSystem
             _InitComboBoxesTab2();
 
             //
-            _InitStudentAttandanceStatusMenu();
-        }
-        private void MainWindow_Load(object sender, EventArgs e)
-        {           
-            LoginWindow loginWindow = new LoginWindow(_connector);
+            _InitStudentAttandanceStatusMenu(); 
+
+            //
+            LoginWindow loginWindow = new LoginWindow(_SqlServerConnector);
 
             if (loginWindow.ShowDialog() != DialogResult.OK)
             {
                 System.Windows.Forms.Application.Exit();
+                return; 
             }
             else
             {
@@ -78,26 +95,26 @@ namespace AttendanceSystem
         }
         private void addTeacherLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddTeacherWindow addTeacherWindow = new AddTeacherWindow(_connector);
+            AddTeacherWindow addTeacherWindow = new AddTeacherWindow(_SqlServerConnector);
             addTeacherWindow.ShowDialog();
             addTeacherWindow.Dispose();
         }
         private void addStudentLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddStudentWindow studentWindow = new AddStudentWindow(_connector);
+            AddStudentWindow studentWindow = new AddStudentWindow(_SqlServerConnector);
             studentWindow.ShowDialog();
             studentWindow.Dispose(); 
         }
         private void addGroupLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddGroupWindow groupWindow = new AddGroupWindow(_connector);
+            AddGroupWindow groupWindow = new AddGroupWindow(_SqlServerConnector);
             groupWindow.ShowDialog();
             groupWindow.Dispose();
 
         }
         private void addLessonLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AddLessonWindow lessonWindow = new AddLessonWindow(_connector);
+            AddLessonWindow lessonWindow = new AddLessonWindow(_SqlServerConnector);
             lessonWindow.ShowDialog();
             lessonWindow.Dispose(); 
         }
@@ -128,7 +145,7 @@ namespace AttendanceSystem
             }
             else
             {
-               _connector.AddAttendanceInfo(_CreateAttendanceInfoRows());    
+               _SqlServerConnector.AddAttendanceInfo(_CreateAttendanceInfoRows());    
             }
         }
         private void showInfoButton_Click(object sender, EventArgs e)
@@ -192,7 +209,7 @@ namespace AttendanceSystem
             if (lessonAttendanceTable.Rows.Count > 0) lessonAttendanceTable.Clear();
 
             Group selectedGroup = (Group)groupComboBox_tab2.SelectedItem; 
-            _students = _connector.GetStudensByGroup(selectedGroup.Name);
+            _students = _SqlServerConnector.GetStudensByGroup(selectedGroup.Name);
 
             foreach(Student student in _students)
             {
@@ -203,7 +220,7 @@ namespace AttendanceSystem
         {
             if (attendanceTable.Rows.Count > 0) attendanceTable.Clear();
 
-            AttendanceInfo[] records = _connector.GetStudentsAttendance(groupComboBox_tab1.Text, lessonComboBox_tab1.Text, datePicker.Value.ToString("yyyy/MM/dd"));
+            AttendanceInfo[] records = _SqlServerConnector.GetStudentsAttendance(groupComboBox_tab1.Text, lessonComboBox_tab1.Text, datePicker.Value.ToString("yyyy/MM/dd"));
             foreach (AttendanceInfo record in records)
             {
                 attendanceTable.Rows.Add(new object[] { record.StudentFullName, record.Status }); 

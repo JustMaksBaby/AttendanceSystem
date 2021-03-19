@@ -15,26 +15,49 @@ namespace AttendanceLibrary.DataAccess
 {
     public class SqlConnector
     {
-        private  static readonly string _db = "AttandanceDb"; //database  connect to
-        private  readonly string _dbConnectionStr =  ConfigurationManager.ConnectionStrings[_db].ConnectionString;
+        private  static readonly string _db = "AttendanceDb"; //database  connect to
+        private  readonly string _dbConnectionStr =  ConfigurationManager.ConnectionStrings[_db]?.ConnectionString;
         private  ISqlConnector _connector; 
         
         public SqlConnector(ISqlConnector connector)
         {
             _connector = connector;
+        } 
+
+        /// <summary>
+        /// This method shoud be used to check a connection to db server
+        /// </summary>
+        public (bool,Exception)  TestConnection()
+        {
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
+            {
+                try
+                {
+                    connection.Open();
+                } 
+                catch(System.InvalidOperationException ex)
+                {
+                    return (false, ex);
+                }
+                catch(System.Data.Common.DbException ex)
+                {
+                    return (false, ex);
+                }
+            }
+
+            return (true, null); 
         }
+
         public bool UserExists(string login)
         {
             int usersInDb = 0;
 
-            using (IDbConnection  connection = _connector.CreateConnection(_dbConnectionStr))
+            using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
-                p.Add("@Login", login);
-
+                p.Add("@Login", login); 
                 usersInDb = connection.ExecuteScalar<int>("dbo.spCheckUserExist", p, commandType: CommandType.StoredProcedure);
             }
-            
             return usersInDb > 0;
         }
         public bool TeacherExists(string firstName, string lastName)
@@ -47,13 +70,15 @@ namespace AttendanceLibrary.DataAccess
                 p.Add("@FirstName", firstName);
                 p.Add("@LastName", lastName);
 
-                teachersInDb = connection.ExecuteScalar<int>("dbo.spCheckTeacherByFirstLastName", p, commandType:CommandType.StoredProcedure);
+                teachersInDb = connection.ExecuteScalar<int>("dbo.spCheckTeacherByFirstLastName", p, commandType: CommandType.StoredProcedure);
             }
+
             return teachersInDb > 0; 
         }
         public bool GroupExists(string groupName)
         {
             int groupsInDb = 0;
+
             using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
@@ -61,20 +86,22 @@ namespace AttendanceLibrary.DataAccess
 
                 groupsInDb = connection.ExecuteScalar<int>("dbo.spCheckGroupExists", p, commandType: CommandType.StoredProcedure);
             }
-
+            
+            
             return groupsInDb > 0;
         }
         public bool LessonExists(string lessonName)
         {
             int lessonsInDb = 0;
+
             using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@Name", lessonName);
 
-                lessonsInDb = connection.ExecuteScalar<int>("dbo.spCheckLessonExists", p, commandType: CommandType.StoredProcedure); 
+                lessonsInDb = connection.ExecuteScalar<int>("dbo.spCheckLessonExists", p, commandType: CommandType.StoredProcedure);
             }
-
+            
             return lessonsInDb > 0; 
         }
     //
@@ -87,11 +114,12 @@ namespace AttendanceLibrary.DataAccess
                 p.Add("@Login", loginInfo.Login);
                 p.Add("@Password", loginInfo.CryptedPassword);
                 p.Add("@Salt", loginInfo.Salt);
-                p.Add("@UserId", AddTeacher(teacher)); 
+                p.Add("@UserId", AddTeacher(teacher));
 
                 connection.Execute("dbo.spAddLoginInfo", p, commandType: CommandType.StoredProcedure);
             }
-        } 
+            
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -107,14 +135,13 @@ namespace AttendanceLibrary.DataAccess
                 p.Add("@Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
                 p.Add("@FirstName", teacher.FirstName);
                 p.Add("@LastName", teacher.LastName);
-                p.Add("@Patronymic",teacher.Patronymic);
-                p.Add("@SystemStatus", teacher.SystemStatus); 
+                p.Add("@Patronymic", teacher.Patronymic);
+                p.Add("@SystemStatus", teacher.SystemStatus);
 
                 connection.Execute("dbo.spAddTeacher", p, commandType: CommandType.StoredProcedure);
 
-                id = p.Get<int>("@Id"); 
+                id = p.Get<int>("@Id");
             }
-
             return id;
         }
         public void  AddGroup(Group group)
@@ -216,7 +243,7 @@ namespace AttendanceLibrary.DataAccess
             Group[] groups = null;
 
             using (IDbConnection connection = _connector.CreateConnection(_dbConnectionStr))
-            {
+            {   
                 groups = connection.Query<Group>("dbo.spGetAllGroups", commandType: CommandType.StoredProcedure).ToArray();     
             }
 
